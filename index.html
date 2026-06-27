@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RenderLogic | Post-Production Studio & Software Lab</title>
+    <meta name="description" content="Professional video editing, post-production, and directing services combined with innovative custom software development. Creators of the Parayu voice dictation application.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Style Sheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <span class="logo-render">Render</span><span class="logo-logic">Logic</span>
+            </a>
+            <nav class="nav">
+                <a href="#services" class="nav-link">Creative Studio</a>
+                <a href="#products" class="nav-link">Software Lab</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="btn btn-nav">Get In Touch</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-bg-glow"></div>
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <span class="badge">Creative + Code</span>
+                    <h1 class="hero-title">Where Creative Post-Production Meets <span class="gradient-text">Logic</span></h1>
+                    <p class="hero-subtitle">We craft high-fidelity video stories and build lightning-fast desktop applications. Founded by an editor and director turned developer.</p>
+                    <div class="hero-actions">
+                        <a href="#services" class="btn btn-primary">Our Services</a>
+                        <a href="#products" class="btn btn-secondary">Explore Products</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="visual-card">
+                        <div class="visual-header">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="card-title">timeline.project</span>
+                        </div>
+                        <div class="visual-body">
+                            <div class="timeline-row video-row">
+                                <span class="label">Video Track</span>
+                                <div class="clip c-blue" style="width: 45%;">Hero_Showreel.mov</div>
+                                <div class="clip c-purple" style="width: 25%;">B-Roll_03.mov</div>
+                            </div>
+                            <div class="timeline-row audio-row">
+                                <span class="label">Audio Track</span>
+                                <div class="clip c-green" style="width: 30%;">SFX_Wind.wav</div>
+                                <div class="clip c-teal" style="width: 40%;">Voiceover_Main.wav</div>
+                            </div>
+                            <div class="code-editor-row">
+                                <span class="line-num">01</span> <span class="token keyword">const</span> <span class="token variable">studio</span> = <span class="token keyword">new</span> <span class="token class">RenderLogic</span>();
+                                <br>
+                                <span class="line-num">02</span> <span class="token variable">studio</span>.<span class="token function">render</span>({ <span class="token property">cinematic</span>: <span class="token boolean">true</span>, <span class="token property">code</span>: <span class="token string">"optimized"</span> });
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section (Creative Post-Production) -->
+        <section id="services" class="services">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Creative Post-Production</h2>
+                    <p class="section-subtitle">Premium editorial and visual services for films, commercials, and high-impact digital content.</p>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+                        </div>
+                        <h3>Video Editing</h3>
+                        <p>High-end pacing, structural storytelling, and offline-to-online workflows. Every cut is driven by emotional beats and timing.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12a4 4 0 0 0 8 0"/></svg>
+                        </div>
+                        <h3>Color Grading</h3>
+                        <p>Creating look-up styles, tone matching, and cinematic grade balances that evoke the exact atmosphere your project demands.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7a2 2 0 0 0-2.45-1.45L16 7V5a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2l4.55 1.45A2 2 0 0 0 23 17V7z"/></svg>
+                        </div>
+                        <h3>Directorial Services</h3>
+                        <p>Bridging creative vision with technical execution. We advise and lead projects from scripting to the final digital master delivery.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section (Software Lab) -->
+        <section id="products" class="products">
+            <div class="container">
+                <div class="products-layout">
+                    <div class="products-visual">
+                        <div class="mockup-frame">
+                            <div class="mockup-header">
+                                <span class="mockup-dot"></span>
+                                <span class="mockup-dot"></span>
+                                <span class="mockup-dot"></span>
+                                <span class="mockup-url">parayu.online</span>
+                            </div>
+                            <div class="mockup-content">
+                                <div class="app-logo">🗣️</div>
+                                <h4>Parayu (Voice-to-Text)</h4>
+                                <p class="app-tag">Fast, Offline, Secure</p>
+                                <div class="wave-animation">
+                                    <div class="wave-bar"></div>
+                                    <div class="wave-bar"></div>
+                                    <div class="wave-bar"></div>
+                                    <div class="wave-bar"></div>
+                                    <div class="wave-bar"></div>
+                                </div>
+                                <div class="app-transcription">
+                                    "Speak naturally, and watch it transcribe in real-time..."
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="products-content">
+                        <span class="badge badge-accent">Featured Product</span>
+                        <h2 class="section-title">The Software Lab</h2>
+                        <p class="section-desc">We build tools that solve workflows. Our software is designed to run locally, prioritizing performance, offline reliability, and absolute privacy.</p>
+                        
+                        <div class="product-feature">
+                            <h4>Parayu (Voice-to-Text Dictation)</h4>
+                            <p>Our flagship dictation application for macOS and Windows. Uses Whisper AI locally on your device—transcribing instantly without sending your voice recording to external servers.</p>
+                            <div class="product-buttons">
+                                <a href="https://parayu.online" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Visit parayu.online</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="about-card">
+                    <h2 class="section-title text-center">About RenderLogic</h2>
+                    <p class="about-text text-center">
+                        RenderLogic was founded by a filmmaker and video editor who discovered the ultimate creative power tool: code. We approach software engineering with a director's eye for detail, pacing, and user experience. Whether cutting a sequence of frames or organizing arrays in code, we prioritize craftsmanship, clarity, and flawless logic.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <div class="contact-box text-center">
+                    <h2 class="section-title">Let's Collaborate</h2>
+                    <p class="contact-subtitle">Have a post-production project, a software inquiry, or want to discuss a custom tool? Let's connect.</p>
+                    
+                    <div class="email-container">
+                        <span class="email-text" id="email-address">contact@renderlogic.in</span>
+                        <button class="btn-copy" id="btn-copy-email" title="Copy to Clipboard">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        </button>
+                    </div>
+                    <p class="copied-indicator" id="copy-status">Copied to clipboard!</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <p>&copy; 2026 RenderLogic Media & Technologies Private Limited. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#services">Services</a>
+                <a href="#products">Products</a>
+                <a href="mailto:contact@renderlogic.in">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Logic -->
+    <script src="script.js"></script>
+</body>
+</html>
