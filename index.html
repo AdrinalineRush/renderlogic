@@ -35,6 +35,93 @@
       gtag('config', 'G-XNH281S53R');
     </script>
 
+    <!-- Structured data (JSON-LD): Organization + founder + website.
+         Helps Google rich results and AI engines identify RenderLogic. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://renderlogic.in/#organization",
+          "name": "RenderLogic",
+          "alternateName": "RenderLogic Studio",
+          "url": "https://renderlogic.in/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://renderlogic.in/assets/logo.png"
+          },
+          "image": "https://renderlogic.in/assets/logo.png",
+          "description": "Cinematic post-production studio and AI software lab - video editing, color grading, directing, and offline AI application development.",
+          "email": "contact@renderlogic.in",
+          "telephone": "+919447127173",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Ernakulam",
+            "addressRegion": "Kerala",
+            "addressCountry": "IN"
+          },
+          "founder": {
+            "@type": "Person",
+            "@id": "https://renderlogic.in/#achuvijayan"
+          },
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "telephone": "+919447127173",
+              "email": "contact@renderlogic.in",
+              "contactType": "customer service",
+              "areaServed": "IN",
+              "availableLanguage": ["en", "ml"]
+            },
+            {
+              "@type": "ContactPoint",
+              "telephone": "+919072223369",
+              "contactType": "sales",
+              "areaServed": "IN"
+            }
+          ],
+          "sameAs": [
+            "https://www.instagram.com/achuvijayan/",
+            "https://www.linkedin.com/in/achuvijayan/"
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://renderlogic.in/#achuvijayan",
+          "name": "Achu Vijayan",
+          "url": "https://renderlogic.in/",
+          "jobTitle": "Founder, Film Editor & Colorist",
+          "worksFor": {
+            "@type": "Organization",
+            "@id": "https://renderlogic.in/#organization"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Ernakulam",
+            "addressRegion": "Kerala",
+            "addressCountry": "IN"
+          },
+          "sameAs": [
+            "https://www.instagram.com/achuvijayan/",
+            "https://www.linkedin.com/in/achuvijayan/"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://renderlogic.in/#website",
+          "url": "https://renderlogic.in/",
+          "name": "RenderLogic",
+          "inLanguage": "en",
+          "publisher": {
+            "@type": "Organization",
+            "@id": "https://renderlogic.in/#organization"
+          }
+        }
+      ]
+    }
+    </script>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
