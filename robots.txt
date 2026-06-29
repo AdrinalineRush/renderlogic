@@ -1,0 +1,40 @@
+# RenderLogic — crawler rules
+# ------------------------------------------------------------
+# Default: every search engine may crawl everything.
+User-agent: *
+Allow: /
+
+# ------------------------------------------------------------
+# AI / answer engines — explicitly WELCOMED so RenderLogic can be
+# cited in ChatGPT, Perplexity, Claude, Google AI Overviews, etc.
+# (Removing/Disallowing any of these would exclude you from that engine.)
+
+User-agent: OAI-SearchBot      # ChatGPT Search
+Allow: /
+
+User-agent: GPTBot            # OpenAI
+Allow: /
+
+User-agent: ChatGPT-User      # ChatGPT browsing on user request
+Allow: /
+
+User-agent: PerplexityBot     # Perplexity
+Allow: /
+
+User-agent: ClaudeBot         # Anthropic (Claude)
+Allow: /
+
+User-agent: Claude-SearchBot  # Anthropic search
+Allow: /
+
+User-agent: Google-Extended   # Google Gemini / AI Overviews grounding
+Allow: /
+
+User-agent: Applebot-Extended # Apple Intelligence
+Allow: /
+
+User-agent: CCBot             # Common Crawl (used to train many models)
+Allow: /
+
+# ------------------------------------------------------------
+Sitemap: https://renderlogic.in/sitemap.xml

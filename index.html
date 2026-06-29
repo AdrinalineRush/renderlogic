@@ -3,130 +3,295 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RenderLogic | Post-Production Studio & Software Lab</title>
-    <meta name="description" content="Professional video editing, post-production, and directing services combined with innovative custom software development. Creators of the Parayu voice dictation application.">
+    <title>RenderLogic | Creative Studio & Software Lab</title>
     
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Cinematic post-production studio and AI software lab. Specializing in video editing, color grading, directing, and offline AI application development.">
+    <meta name="keywords" content="Achu Vijayan, Vichithram, Aattam, film editing, color grading, post production, Parayu, RenderMagic, AI filmmaking, Kerala cinema, software developer">
+    <meta name="author" content="RenderLogic">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://renderlogic.in/">
+
+    <!-- Open Graph (Facebook / WhatsApp / LinkedIn link previews) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://renderlogic.in/">
+    <meta property="og:title" content="RenderLogic | Creative Studio & Software Lab">
+    <meta property="og:description" content="Cinematic post-production meets software logic. Video editing, color grading, directing, and offline AI tools.">
+    <meta property="og:image" content="https://renderlogic.in/assets/logo.png">
+    <meta property="og:site_name" content="RenderLogic">
+
+    <!-- Twitter / X card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="RenderLogic | Creative Studio & Software Lab">
+    <meta name="twitter:description" content="Cinematic post-production meets software logic. Video editing, color grading, directing, and offline AI tools.">
+    <meta name="twitter:image" content="https://renderlogic.in/assets/logo.png">
+
+    <!-- ============================================================
+         GOOGLE SETUP — paste the two snippets here once you have them
+         (see steps from Claude). Until then these are inert comments.
+         1) Search Console HTML-tag verification:
+            <meta name="google-site-verification" content="PASTE_TOKEN_HERE">
+         2) Google Analytics (GA4) — replace G-XXXXXXXXXX with your ID:
+            <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+            <script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-XXXXXXXXXX');
+            </script>
+         ============================================================ -->
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- Style Sheet -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- Header Navigation -->
-    <header class="header">
+    <!-- Floating Background Radial Glows -->
+    <div class="bg-glow-container">
+        <div class="glow-spot-1" id="radial-glow-cyan"></div>
+        <div class="glow-spot-2" id="radial-glow-purple"></div>
+    </div>
+
+    <!-- Header Navigation acting as Tab Triggers -->
+    <header class="header" id="main-header">
         <div class="container nav-container">
-            <a href="#" class="logo">
+            <a href="#" class="logo" id="header-logo" aria-label="RenderLogic Home" data-tab-target="tab-creative">
+                <span class="logo-icon"></span>
                 <span class="logo-render">Render</span><span class="logo-logic">Logic</span>
             </a>
-            <nav class="nav">
-                <a href="#services" class="nav-link">Creative Studio</a>
-                <a href="#products" class="nav-link">Software Lab</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#contact" class="btn btn-nav">Get In Touch</a>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-nav-toggle" id="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <nav class="nav" id="navigation-bar" role="navigation">
+                <a href="#creative" class="nav-link active" data-tab-target="tab-creative">Creative Studio</a>
+                <a href="#software" class="nav-link" data-tab-target="tab-software">Software Lab</a>
+                <a href="#magic" class="nav-link" data-tab-target="tab-magic">RenderMagic</a>
+                <a href="#collaborators" class="nav-link" data-tab-target="tab-collaborators">Collaborators</a>
+                
+                <!-- Resources Dropdown -->
+                <div class="nav-dropdown" id="resources-dropdown">
+                    <a href="#" class="nav-link" id="nav-resources-trigger">Resources <span class="arrow-icon">▼</span></a>
+                    <div class="dropdown-menu glass-card">
+                        <a href="#documentation" class="dropdown-item" data-tab-target="tab-documentation">
+                            <h5>Documentation</h5>
+                            <p>Quickstart setup, shortcuts, and dictionary.</p>
+                        </a>
+                        <a href="#support" class="dropdown-item" data-tab-target="tab-support">
+                            <h5>Help Center</h5>
+                            <p>Frequently asked questions and guides.</p>
+                        </a>
+                        <a href="#blogs" class="dropdown-item" data-tab-target="tab-blogs">
+                            <h5>Blog</h5>
+                            <p>Latest updates, tutorials, and features.</p>
+                        </a>
+                        <a href="#affiliate" class="dropdown-item" data-tab-target="tab-affiliate">
+                            <h5>Affiliate Program</h5>
+                            <p>Earn recurring partner commissions.</p>
+                        </a>
+                        <a href="#mediakit" class="dropdown-item" data-tab-target="tab-mediakit">
+                            <h5>Media Kit</h5>
+                            <p>Official logos and transparent assets.</p>
+                        </a>
+                    </div>
+                </div>
+                
+                <a href="#contact" class="btn btn-nav" data-tab-target="tab-contact">Get In Touch</a>
             </nav>
         </div>
     </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-bg-glow"></div>
-            <div class="container hero-container">
-                <div class="hero-content">
-                    <span class="badge">Creative + Code</span>
-                    <h1 class="hero-title">Where Creative Post-Production Meets <span class="gradient-text">Logic</span></h1>
-                    <p class="hero-subtitle">We craft high-fidelity video stories and build lightning-fast desktop applications. Founded by an editor and director turned developer.</p>
-                    <div class="hero-actions">
-                        <a href="#services" class="btn btn-primary">Our Services</a>
-                        <a href="#products" class="btn btn-secondary">Explore Products</a>
-                    </div>
+    <main class="main-content-area">
+
+        <!-- ==========================================
+             TAB 1: CREATIVE STUDIO (70% Brand Mood)
+             ========================================== -->
+        <section id="tab-creative" class="tab-content active">
+            <div class="container">
+                <!-- Hero Cinematic Intro -->
+                <div class="cinematic-hero">
+                    <span class="badge">Filmmaking & Post-Production</span>
+                    <h1 class="hero-title font-giant">Crafting Stories with <span class="gradient-text">Cinematic</span> Precision</h1>
+                    <p class="hero-subtitle">High-fidelity editorial, color grading, directing, and VFX services for theatrical features, commercials, and AI-assisted filmmaking pipelines.</p>
                 </div>
-                <div class="hero-visual">
-                    <div class="visual-card">
+                
+                <!-- Video Editor Timeline Mockup Panel -->
+                <div class="visual-panel-wrapper">
+                    <div class="visual-card glass-card" id="timeline-card">
                         <div class="visual-header">
                             <span class="dot red"></span>
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
-                            <span class="card-title">timeline.project</span>
+                            <span class="card-title">renderlogic_timeline.project</span>
                         </div>
                         <div class="visual-body">
+                            <!-- NLE Timecode Ruler -->
+                            <div class="timeline-ruler">
+                                <span class="ruler-tick">00:00</span>
+                                <span class="ruler-tick">00:10</span>
+                                <span class="ruler-tick">00:20</span>
+                                <span class="ruler-tick">00:30</span>
+                                <span class="ruler-tick">00:40</span>
+                                <span class="ruler-tick">00:50</span>
+                            </div>
+                            
+                            <!-- Playhead scanning line -->
+                            <div class="timeline-playhead-line" id="timeline-playhead"></div>
+                            
                             <div class="timeline-row video-row">
                                 <span class="label">Video Track</span>
-                                <div class="clip c-blue" style="width: 45%;">Hero_Showreel.mov</div>
-                                <div class="clip c-purple" style="width: 25%;">B-Roll_03.mov</div>
+                                <div class="clip c-blue" id="clip-video-1" data-duration="45" style="width: 45%;">Hero_Showreel.mov</div>
+                                <div class="clip c-purple" id="clip-video-2" data-duration="25" style="width: 25%;">B-Roll_03.mov</div>
                             </div>
                             <div class="timeline-row audio-row">
                                 <span class="label">Audio Track</span>
-                                <div class="clip c-green" style="width: 30%;">SFX_Wind.wav</div>
-                                <div class="clip c-teal" style="width: 40%;">Voiceover_Main.wav</div>
+                                <div class="clip c-green" id="clip-audio-1" data-duration="30" style="width: 30%;">SFX_Wind.wav</div>
+                                <div class="clip c-teal" id="clip-audio-2" data-duration="40" style="width: 40%;">Voiceover_Main.wav</div>
                             </div>
-                            <div class="code-editor-row">
-                                <span class="line-num">01</span> <span class="token keyword">const</span> <span class="token variable">studio</span> = <span class="token keyword">new</span> <span class="token class">RenderLogic</span>();
-                                <br>
-                                <span class="line-num">02</span> <span class="token variable">studio</span>.<span class="token function">render</span>({ <span class="token property">cinematic</span>: <span class="token boolean">true</span>, <span class="token property">code</span>: <span class="token string">"optimized"</span> });
+                            
+                            <!-- NLE Media Controller & DB Meter -->
+                            <div class="timeline-controls-row">
+                                <div class="timeline-asset-info" id="timeline-asset-info">Active Preview: Hero_Showreel.mov</div>
+                                
+                                <div class="timeline-transport">
+                                    <button class="transport-btn" aria-label="Previous Frame">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="19 20 9 12 19 4 19 20"/><rect x="5" y="4" width="2" height="16"/></svg>
+                                    </button>
+                                    <button class="transport-btn play-active" id="btn-timeline-play" aria-label="Play/Pause">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                                    </button>
+                                    <button class="transport-btn" aria-label="Next Frame">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 4 15 12 5 20 5 4"/><rect x="17" y="4" width="2" height="16"/></svg>
+                                    </button>
+                                </div>
+                                
+                                <div class="audio-db-meter">
+                                    <span class="db-label">L</span>
+                                    <div class="meter-bar"><div class="meter-fill" id="meter-fill-l" style="width: 65%;"></div></div>
+                                    <span class="db-label">R</span>
+                                    <div class="meter-bar"><div class="meter-fill" id="meter-fill-r" style="width: 58%;"></div></div>
+                                </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Film Projects Portfolio Grid -->
+                <div class="portfolio-section">
+                    <h2 class="section-title text-center">Featured Filmography</h2>
+                    <p class="section-subtitle text-center">Post-production craftsmanship for theatrical features and award-winning projects.</p>
+                    
+                    <div class="portfolio-grid">
+                        <div class="portfolio-card glass-card">
+                            <div class="portfolio-thumbnail">
+                                <span class="portfolio-badge">Directorial Debut</span>
+                            </div>
+                            <div class="portfolio-info">
+                                <h3>Vichithram</h3>
+                                <p class="portfolio-role">Director & Editor</p>
+                                <p class="portfolio-desc">A highly acclaimed psychological horror-thriller in Malayalam cinema, celebrated for its unique structural pacing, dim obsidian color grading, and complex plot narrative.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="portfolio-card glass-card">
+                            <div class="portfolio-thumbnail">
+                                <span class="portfolio-badge">National Award Winner</span>
+                            </div>
+                            <div class="portfolio-info">
+                                <h3>Aattam</h3>
+                                <p class="portfolio-role">Lead Editor</p>
+                                <p class="portfolio-desc">Winner of the National Film Award for Best Feature Film. Editorial craftsmanship focused on chamber tension, theatrical ensembles, and precise narrative tempo.</p>
+                            </div>
+                        </div>
+
+                        <div class="portfolio-card glass-card">
+                            <div class="portfolio-thumbnail">
+                                <span class="portfolio-badge">Satirical Drama</span>
+                            </div>
+                            <div class="portfolio-info">
+                                <h3>Mukundan Unni Associates</h3>
+                                <p class="portfolio-role">Lead Editor</p>
+                                <p class="portfolio-desc">A dark satirical comedy featuring rapid-fire dialogue pacing, high-density graphics composition, and dynamic aspect-ratio shifts matching the character's descent.</p>
+                            </div>
+                        </div>
+
+                        <div class="portfolio-card glass-card">
+                            <div class="portfolio-thumbnail">
+                                <span class="portfolio-badge">Color Grading & VFX</span>
+                            </div>
+                            <div class="portfolio-info">
+                                <h3>Charles Enterprises</h3>
+                                <p class="portfolio-role">DI Colorist & VFX Artist</p>
+                                <p class="portfolio-desc">Creative color matching and high-end digital compositing to build the cinematic look and fantastical elements of this comedy-drama.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Media Services Grid -->
+                <div class="services-wrapper">
+                    <h2 class="section-title text-center">Studio Services</h2>
+                    <div class="services-grid">
+                        <div class="service-card glass-card">
+                            <div class="service-icon">🎬</div>
+                            <h3>Theatrical Film Editing</h3>
+                            <p>High-end structural pacing and narrative trimming. Every frame cut is timed to maintain maximum suspense, emotion, and rhythm.</p>
+                        </div>
+                        <div class="service-card glass-card">
+                            <div class="service-icon">🎨</div>
+                            <h3>Cinematic Color Grading (DI)</h3>
+                            <p>Premium digital intermediate grading matching the mood of your cinematic vision. Seamless transitions from daylight exposure to dark obsidian tones.</p>
+                        </div>
+                        <div class="service-card glass-card">
+                            <div class="service-icon">🧠</div>
+                            <h3>AI Filmmaking Workflows</h3>
+                            <p>Integrating state-of-the-art AI tooling, ComfyUI structures, and prompt engineering parameters to generate high-resolution b-rolls, textures, and digital composition plates.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Services Section (Creative Post-Production) -->
-        <section id="services" class="services">
+
+        <!-- ==========================================
+             TAB 2: SOFTWARE LAB (30% Brand Mood)
+             ========================================== -->
+        <section id="tab-software" class="tab-content">
             <div class="container">
-                <div class="section-header text-center">
-                    <h2 class="section-title">Creative Post-Production</h2>
-                    <p class="section-subtitle">Premium editorial and visual services for films, commercials, and high-impact digital content.</p>
+                <div class="software-hero text-center">
+                    <span class="badge badge-accent">Software Lab</span>
+                    <h2 class="section-title">High-Performance Offline Applications</h2>
+                    <p class="section-subtitle">We build lightning-fast desktop tools that run 100% locally on your machine—prioritizing absolute privacy, offline speed, and zero cloud subscriptions.</p>
                 </div>
-                
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
-                        </div>
-                        <h3>Video Editing</h3>
-                        <p>High-end pacing, structural storytelling, and offline-to-online workflows. Every cut is driven by emotional beats and timing.</p>
-                    </div>
 
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12a4 4 0 0 0 8 0"/></svg>
-                        </div>
-                        <h3>Color Grading</h3>
-                        <p>Creating look-up styles, tone matching, and cinematic grade balances that evoke the exact atmosphere your project demands.</p>
-                    </div>
-
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7a2 2 0 0 0-2.45-1.45L16 7V5a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2l4.55 1.45A2 2 0 0 0 23 17V7z"/></svg>
-                        </div>
-                        <h3>Directorial Services</h3>
-                        <p>Bridging creative vision with technical execution. We advise and lead projects from scripting to the final digital master delivery.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Products Section (Software Lab) -->
-        <section id="products" class="products">
-            <div class="container">
-                <div class="products-layout">
-                    <div class="products-visual">
-                        <div class="mockup-frame">
+                <!-- Showcase Flagship: Parayu -->
+                <div class="parayu-showcase-grid">
+                    <div class="parayu-visual-mockup">
+                        <div class="mockup-frame glass-card">
                             <div class="mockup-header">
-                                <span class="mockup-dot"></span>
-                                <span class="mockup-dot"></span>
-                                <span class="mockup-dot"></span>
+                                <span class="mockup-dot close"></span>
+                                <span class="mockup-dot minimize"></span>
+                                <span class="mockup-dot maximize"></span>
                                 <span class="mockup-url">parayu.online</span>
                             </div>
                             <div class="mockup-content">
-                                <div class="app-logo">🗣️</div>
+                                <!-- Waveform "പ" logo indicator -->
+                                <div class="app-logo-container">
+                                    <div class="app-custom-logo">പ</div>
+                                </div>
                                 <h4>Parayu (Voice-to-Text)</h4>
-                                <p class="app-tag">Fast, Offline, Secure</p>
+                                <p class="app-tag">Whisper AI Offline Engine</p>
+                                
+                                <!-- Audio Waveform animation -->
                                 <div class="wave-animation">
                                     <div class="wave-bar"></div>
                                     <div class="wave-bar"></div>
@@ -134,68 +299,512 @@
                                     <div class="wave-bar"></div>
                                     <div class="wave-bar"></div>
                                 </div>
-                                <div class="app-transcription">
+                                <div class="app-transcription" id="parayu-transcription-box">
                                     "Speak naturally, and watch it transcribe in real-time..."
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="products-content">
-                        <span class="badge badge-accent">Featured Product</span>
-                        <h2 class="section-title">The Software Lab</h2>
-                        <p class="section-desc">We build tools that solve workflows. Our software is designed to run locally, prioritizing performance, offline reliability, and absolute privacy.</p>
+                    
+                    <div class="parayu-details-content">
+                        <h3>Parayu Voice Dictation</h3>
+                        <p class="section-desc">Our flagship application for macOS and Windows. Uses local Whisper AI models on your own machine—transcribing instantly directly into whichever text application you are currently typing in.</p>
                         
-                        <div class="product-feature">
-                            <h4>Parayu (Voice-to-Text Dictation)</h4>
-                            <p>Our flagship dictation application for macOS and Windows. Uses Whisper AI locally on your device—transcribing instantly without sending your voice recording to external servers.</p>
-                            <div class="product-buttons">
-                                <a href="https://parayu.online" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Visit parayu.online</a>
+                        <div class="feature-bullets-grid">
+                            <div class="bullet-card glass-card">
+                                <h4>🔒 100% Private</h4>
+                                <p>Your voice recordings never leave your machine. No cloud uploads, no server data retention.</p>
                             </div>
+                            <div class="bullet-card glass-card">
+                                <h4>⚡ Sub-second Speed</h4>
+                                <p>Optimized C++ bindings (`whisper.cpp`) ensure transcription completes instantly.</p>
+                            </div>
+                            <div class="bullet-card glass-card">
+                                <h4>🗣️ Multilingual Native</h4>
+                                <p>Built with special optimizations for Indian languages including Malayalam, Hindi, and English dictation.</p>
+                            </div>
+                        </div>
+
+                        <div class="action-buttons-group">
+                            <a href="https://parayu.online" target="_blank" rel="noopener" class="btn btn-primary">Visit parayu.online</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Roadmaps -->
+                <div class="roadmap-section">
+                    <h3 class="section-title text-center">Development Pipeline</h3>
+                    <div class="roadmap-grid">
+                        <div class="roadmap-card glass-card">
+                            <span class="roadmap-tag">In Active Beta</span>
+                            <h4>WhichOTT Search</h4>
+                            <p>Refining an ultra-premium, cinematic OTT search aggregator layout to help you find precisely where films and web shows are streaming, matching metadata and user mood recommendations.</p>
+                        </div>
+                        <div class="roadmap-card glass-card">
+                            <span class="roadmap-tag">Planned Q4</span>
+                            <h4>Keyboard Handoff Extension</h4>
+                            <p>Enabling custom Malayalam gesture dictation keyboards for iOS and Android, pairing offline translation maps directly on mobile chipsets.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- About Section -->
-        <section id="about" class="about">
+
+        <!-- ==========================================
+             TAB 3: RENDERMAGIC (AI Video Director)
+             ========================================== -->
+        <section id="tab-magic" class="tab-content">
             <div class="container">
-                <div class="about-card">
-                    <h2 class="section-title text-center">About RenderLogic</h2>
-                    <p class="about-text text-center">
-                        RenderLogic was founded by a filmmaker and video editor who discovered the ultimate creative power tool: code. We approach software engineering with a director's eye for detail, pacing, and user experience. Whether cutting a sequence of frames or organizing arrays in code, we prioritize craftsmanship, clarity, and flawless logic.
-                    </p>
+                <div class="magic-hero text-center">
+                    <span class="badge">AI Video Generator</span>
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 20px;">
+                        <img src="assets/logo.png" style="width: 50px; height: 50px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 242, 254, 0.2);" alt="RenderMagic Logo">
+                        <h2 class="section-title" style="margin-bottom: 0;">RenderMagic Director</h2>
+                    </div>
+                    <p class="section-subtitle">Instantly generate high-definition short videos from a single subject prompt. Synthesizes copy, scripts, voiceovers, background music, and composited timeline tracks locally.</p>
+                </div>
+                
+                <div class="magic-workspace-grid">
+                    <!-- Streamlit configuration sidebar style (upgraded) -->
+                    <div class="magic-config-sidebar glass-card">
+                        <h3>Configuration Panel</h3>
+                        
+                        <div class="input-group">
+                            <label for="magic-subject">Video Topic / Subject</label>
+                            <textarea id="magic-subject" placeholder="Enter what your video is about... (e.g. History of cinema editing, Evolution of CGI)"></textarea>
+                        </div>
+                        
+                        <div class="input-row">
+                            <div class="input-half">
+                                <label for="magic-aspect">Aspect Ratio</label>
+                                <select id="magic-aspect">
+                                    <option value="9:16">Vertical (9:16) — TikTok/Reels</option>
+                                    <option value="16:9" selected>Horizontal (16:9) — YouTube/Film</option>
+                                    <option value="1:1">Square (1:1)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="input-half">
+                                <label for="magic-voice">Voice Narrator</label>
+                                <select id="magic-voice">
+                                    <option value="alloy">OpenAI Alloy (English)</option>
+                                    <option value="echo">OpenAI Echo (Deep Male)</option>
+                                    <option value="nova">OpenAI Nova (Female Accent)</option>
+                                    <option value="edge-ml">Local Malayalam Narrator</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="input-row">
+                            <div class="input-half">
+                                <label for="magic-sub-theme">Subtitle Theme</label>
+                                <select id="magic-sub-theme">
+                                    <option value="cinematic">Cinematic Bottom (Soft border)</option>
+                                    <option value="tiktok">TikTok Style (Yellow pop)</option>
+                                    <option value="minimal">Minimalist (Top center)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="input-half">
+                                <label for="magic-bgm">Background Track</label>
+                                <select id="magic-bgm">
+                                    <option value="ambient">Ambient Cinematic Space</option>
+                                    <option value="cyber">Cyberpunk Synthwave</option>
+                                    <option value="epic">Epic Orchestral Build</option>
+                                    <option value="none">No Background Music</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-primary btn-full-width" id="btn-generate-magic">
+                            Generate Magic Video
+                        </button>
+                    </div>
+                    
+                    <!-- Main Render Display -->
+                    <div class="magic-render-display glass-card" id="magic-display-panel">
+                        <!-- Idle state -->
+                        <div class="display-idle" id="magic-display-idle">
+                            <div class="display-icon">⚙️</div>
+                            <h4>Ready for Generation</h4>
+                            <p>Configure parameters on the left panel and click generate to initiate local script writing, voiceover synthesis, and clip composition.</p>
+                        </div>
+                        
+                        <!-- Rendering State (Hidden by default) -->
+                        <div class="display-rendering" id="magic-display-rendering" style="display: none;">
+                            <div class="magic-spinner"></div>
+                            <h4>Synthesizing Assets...</h4>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar-fill" id="magic-progress-bar"></div>
+                            </div>
+                            <ul class="rendering-steps" id="rendering-steps-list">
+                                <li class="step-item" id="step-script">📝 Writing script...</li>
+                                <li class="step-item" id="step-voice">🎙️ Generating voiceover...</li>
+                                <li class="step-item" id="step-clips">🎥 Searching b-roll...</li>
+                                <li class="step-item" id="step-compositing">Compositing timeline...</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Output Player State (Hidden by default) -->
+                        <div class="display-player" id="magic-display-player" style="display: none;">
+                            <div class="mock-player-frame">
+                                <!-- Dynamic Render output simulated screen -->
+                                <div class="player-screen" id="player-screen-visual">
+                                    <div class="cinema-filter"></div>
+                                    <div class="mock-subtitles" id="player-subtitles">"In the early days of cinema, editing was a purely physical process..."</div>
+                                </div>
+                                <div class="player-controls">
+                                    <button class="player-ctrl-btn" id="btn-player-play-toggle">Pause</button>
+                                    <div class="player-timeline">
+                                        <div class="player-progress-fill" id="player-timeline-fill" style="width: 25%;"></div>
+                                    </div>
+                                    <span class="player-time-label" id="player-time-display">00:08 / 00:15</span>
+                                </div>
+                            </div>
+                            <div class="player-meta-info">
+                                <h3>Generated Output Result</h3>
+                                <p>Resolution: 1920x1080 (HD) | Codec: H.264 MP4 | Audio: stereo 48kHz</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Pitch & System Requirements Section -->
+                <div class="magic-specs-grid" style="margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                    <!-- Features Card -->
+                    <div class="glass-card" style="padding: 24px; border-radius: 18px; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(255, 255, 255, 0.01);">
+                        <h3 style="font-family: var(--font-heading); font-size: 18px; font-weight: 700; margin-bottom: 16px; color: #ffffff; display: flex; align-items: center; gap: 8px;">
+                            🎬 A Film Director in Your Terminal
+                        </h3>
+                        <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px;">
+                            RenderMagic Director acts like a virtual post-production crew running locally on your computer. With a single topic prompt, the tool automates the entire video creation pipeline:
+                        </p>
+                        <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; padding-left: 0;">
+                            <li style="font-size: 13px; color: #ffffff; display: flex; align-items: center; gap: 8px;">
+                                <span style="color: var(--primary);">✓</span> <strong>Topic Research:</strong> Instantly collects narrative context.
+                            </li>
+                            <li style="font-size: 13px; color: #ffffff; display: flex; align-items: center; gap: 8px;">
+                                <span style="color: var(--primary);">✓</span> <strong>Scriptwriter:</strong> Writes structured video script narration.
+                            </li>
+                            <li style="font-size: 13px; color: #ffffff; display: flex; align-items: center; gap: 8px;">
+                                <span style="color: var(--primary);">✓</span> <strong>Footage Selection:</strong> Picks and sequences matching raw clips.
+                            </li>
+                            <li style="font-size: 13px; color: #ffffff; display: flex; align-items: center; gap: 8px;">
+                                <span style="color: var(--primary);">✓</span> <strong>Voice Narrator:</strong> Synthesizes local audio voiceover tracks.
+                            </li>
+                            <li style="font-size: 13px; color: #ffffff; display: flex; align-items: center; gap: 8px;">
+                                <span style="color: var(--primary);">✓</span> <strong>HD Compilation:</strong> Compiles and exports final MP4 videos in minutes.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- System Specs Card -->
+                    <div class="glass-card" style="padding: 24px; border-radius: 18px; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(255, 255, 255, 0.01); display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <h3 style="font-family: var(--font-heading); font-size: 18px; font-weight: 700; margin-bottom: 16px; color: #ffffff; display: flex; align-items: center; gap: 8px;">
+                                💻 Minimum System Requirements
+                            </h3>
+                            <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px;">
+                                No expensive cloud-GPU subscriptions. Turn any basic laptop into an offline <strong>content factory</strong> with local execution boundaries:
+                            </p>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+                                <div style="background: rgba(255,255,255,0.02); padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.03);">
+                                    <span style="font-size: 10px; text-transform: uppercase; color: var(--primary); font-weight: 700;">Processor</span>
+                                    <h4 style="font-size: 15px; color: #ffffff; margin-top: 4px;">CPU is Enough</h4>
+                                </div>
+                                <div style="background: rgba(255,255,255,0.02); padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.03);">
+                                    <span style="font-size: 10px; text-transform: uppercase; color: var(--primary); font-weight: 700;">System Memory</span>
+                                    <h4 style="font-size: 15px; color: #ffffff; margin-top: 4px;">~4 GB RAM</h4>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="background: rgba(0, 242, 254, 0.03); border: 1px solid rgba(0, 242, 254, 0.15); padding: 14px; border-radius: 12px;">
+                            <h5 style="font-size: 12px; color: var(--primary); font-weight: 700; margin-bottom: 4px; display: flex; align-items: center; gap: 6px;">
+                                📝 Verification Case Study
+                            </h5>
+                            <p style="font-size: 11.5px; color: var(--text-muted); line-height: 1.5; margin: 0;">
+                                Prompting the word <strong>"health"</strong> generates a complete 60-second ready-to-publish video (with voiceover, matching footage, and synced subtitles) in less than 4 minutes.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="contact">
+
+        <!-- ==========================================
+             TAB 4: COLLABORATORS
+             ========================================== -->
+        <section id="tab-collaborators" class="tab-content">
+            <div class="container">
+                <div class="collaborators-hero text-center">
+                    <span class="badge">Team & Leadership</span>
+                    <h2 class="section-title">Key Collaborators</h2>
+                    <p class="section-subtitle">The directors, editors, VFX specialists, and local developer minds behind RenderLogic products.</p>
+                </div>
+                
+                <!-- Founder Spotlight -->
+                <div class="founder-card glass-card">
+                    <div class="founder-info">
+                        <div class="founder-avatar-placeholder">AV</div>
+                        <div class="founder-bio">
+                            <h3>Achu Vijayan</h3>
+                            <p class="founder-subtitle-text">Founder & Lead Director</p>
+                            <p class="founder-description">
+                                Achu sits at the intersection of cinema and software. An editor, colorist, and director in the Indian film industry, he directed the theatrical film <em>Vichithram</em> and edited acclaimed projects like the National Award-winning <em>Aattam</em>, <em>Mukundan Unni Associates</em>, and <em>Charles Enterprises</em>. 
+                            </p>
+                            <p class="founder-description">
+                                Translating editing rhythm and visual flow into software craftsmanship, Achu leads the design and product vision at RenderLogic, ensuring that our technical toolsets support creative specialists.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="founder-disciplines">
+                        <h4>Expertise</h4>
+                        <div class="disciplines-grid">
+                            <div class="discipline-tag">🎬 Directing & Scripting</div>
+                            <div class="discipline-tag">🎞️ Editorial Pacing</div>
+                            <div class="discipline-tag">🎨 DI Color Grading</div>
+                            <div class="discipline-tag">💻 Desktop & Web Dev</div>
+                            <div class="discipline-tag">🧠 Local AI Models</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Collaborators Showcase Grid -->
+                <div class="collaborators-grid">
+                    <div class="collab-card glass-card">
+                        <div class="collab-header">
+                            <div class="collab-avatar">VFX</div>
+                            <div>
+                                <h4>Post-Production Partners</h4>
+                                <p class="collab-role">Creative VFX & Motion</p>
+                            </div>
+                        </div>
+                        <p class="collab-desc">Experienced animators and compositing partners who support CGI, rotoscoping, and look-dev for theatrical features and commercial campaigns.</p>
+                    </div>
+                    
+                    <div class="collab-card glass-card">
+                        <div class="collab-header">
+                            <div class="collab-avatar">DEV</div>
+                            <div>
+                                <h4>AI & Systems Engineers</h4>
+                                <p class="collab-role">Native Desktop Developers</p>
+                            </div>
+                        </div>
+                        <p class="collab-desc">Systems engineers optimizing C++ bindings, `whisper.cpp` packages, and local OS shortcuts to build fast, lightweight, and private application binaries.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==========================================
+             TAB 5: DOCUMENTATION
+             ========================================== -->
+        <section id="tab-documentation" class="tab-content">
+            <div class="container">
+                <div class="support-hero text-center">
+                    <span class="badge">Docs</span>
+                    <h2 class="section-title">Documentation & Developer Guide</h2>
+                    <p class="section-subtitle">Guides for configuring local speech recognition models, hotkeys, and custom templates.</p>
+                </div>
+                
+                <div class="faq-row-grid" style="display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 800px; margin: 0 auto;">
+                    <div class="faq-card glass-card">
+                        <h4>Local Application Quickstart</h4>
+                        <p>To run Parayu locally, clone the main workspace repository, run <code>npm install</code>, and start in development mode using <code>npm start</code>. Native bindings (like uiohook-napi and smart-whisper) compile automatically on systems with standard C++ build tools (Xcode CLI on macOS or Visual Studio Build Tools on Windows).</p>
+                    </div>
+                    <div class="faq-card glass-card">
+                        <h4>Hotkeys & Shortcuts Configuration</h4>
+                        <p>The default dictation hotkey is mapped to <code>Ctrl + Space</code> (or double-press Fn on Apple Silicon). You can configure hotkeys in the app settings panel which stores the raw keycodes in your local <code>config.json</code> under the application data directory.</p>
+                    </div>
+                    <div class="faq-card glass-card">
+                        <h4>Local Custom Dictionary</h4>
+                        <p>Improve word recognition for regional slang and technical terms (e.g. video formats, camera models). Create a file named <code>custom-dictionary.json</code> inside the application folder and add key-value pairs representing custom pronunciations and transcript outputs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==========================================
+             TAB 6: HELP CENTER (Support Center)
+             ========================================== -->
+        <section id="tab-support" class="tab-content">
+            <div class="container">
+                <div class="support-hero text-center">
+                    <span class="badge">Help & FAQ</span>
+                    <h2 class="section-title">Support Center</h2>
+                    <p class="section-subtitle">Find resources, setup guides, and troubleshooting steps for RenderLogic softwares.</p>
+                </div>
+                
+                <div class="support-faq-wrapper">
+                    <div class="faq-card glass-card">
+                        <h4>How do I authorize accessibility permissions for Parayu on macOS?</h4>
+                        <p>Parayu uses local keyboard simulation to paste your dictated text. Go to <strong>System Settings → Privacy & Security → Accessibility</strong>, and check the box next to Parayu. If it doesn't work immediately, remove Parayu from the list and add it back.</p>
+                    </div>
+                    
+                    <div class="faq-card glass-card">
+                        <h4>Can I run RenderMagic entirely offline?</h4>
+                        <p>Yes. RenderMagic compiles local Python and faster-whisper assets. While initial download of LLM or speech weights requires an active connection, all generation, script-writing, and stitching run 100% locally on your CPU/GPU.</p>
+                    </div>
+
+                    <div class="faq-card glass-card">
+                        <h4>Do you offer custom tool development for post-production houses?</h4>
+                        <p>Absolutely. We build custom asset pipelines, ComfyUI automation hooks, and local file organization tools tailored to editing houses and DI color studios. Get in touch with us via the contact form.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==========================================
+             TAB 7: BLOG
+             ========================================== -->
+        <section id="tab-blogs" class="tab-content">
+            <div class="container">
+                <div class="blogs-hero text-center">
+                    <span class="badge">Knowledge Hub</span>
+                    <h2 class="section-title">Cinematic & Technical Thoughts</h2>
+                    <p class="section-subtitle">Insights from our team regarding film editorial workflows, DI color grading tips, and local AI developments.</p>
+                </div>
+                
+                <div class="blogs-grid">
+                    <article class="blog-card glass-card">
+                        <div class="blog-meta">June 25, 2026 | Post-Production</div>
+                        <h3>Pacing and Rhythm in Ensemble Film Editing</h3>
+                        <p>How spacing, actor beats, and environmental cuts build structural tension in chamber-style cinema. Case study of editing Aattam.</p>
+                        <a href="#" class="blog-link">Read Article →</a>
+                    </article>
+                    
+                    <article class="blog-card glass-card">
+                        <div class="blog-meta">May 12, 2026 | Software & AI</div>
+                        <h3>The Power of Local AI: Dictation without Server Subscriptions</h3>
+                        <p>Exploring the performance benchmarks of running Whisper AI weights offline using C++ bindings. Why privacy is the ultimate feature.</p>
+                        <a href="#" class="blog-link">Read Article →</a>
+                    </article>
+
+                    <article class="blog-card glass-card">
+                        <div class="blog-meta">April 08, 2026 | DI Colorist</div>
+                        <h3>Styling the Obsidian Dark Look for Psychological Thrillers</h3>
+                        <p>A breakdown of lut balances, dark exposure matching, and neon highlight contrast. Grading keys used in Vichithram.</p>
+                        <a href="#" class="blog-link">Read Article →</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==========================================
+             TAB 8: AFFILIATE PROGRAM
+             ========================================== -->
+        <section id="tab-affiliate" class="tab-content">
+            <div class="container">
+                <div class="support-hero text-center">
+                    <span class="badge badge-accent">Partner Program</span>
+                    <h2 class="section-title">RenderLogic Affiliate</h2>
+                    <p class="section-subtitle">Partner with us and earn recurring commissions on software licenses and client referrals.</p>
+                </div>
+                
+                <div class="affiliate-details glass-card" style="max-width: 800px; margin: 0 auto; padding: 40px;">
+                    <h3>Earn 20% Recurring Commission</h3>
+                    <p class="section-desc" style="margin-top: 14px;">Recommend our local AI tools (like Parayu) or refer post-production clients to our Creative Studio. For every active subscription, license key purchase, or signed film/commercial editorial contract, you earn a 20% recurring monthly payout.</p>
+                    
+                    <div class="bullet-card" style="margin-top: 30px; border: 1px solid var(--border-color); border-radius: 8px; padding: 20px;">
+                        <h4>How it works:</h4>
+                        <p style="margin-top: 8px; color: var(--text-muted);">1. Sign up for a free affiliate partner link through our support dashboard.<br>2. Share your link with creators, editors, film producers, and directors.<br>3. Track your payouts, traffic analytics, and active contracts in real-time.<br>4. Receive monthly automatic payouts via Stripe or bank transfer.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==========================================
+             TAB 9: MEDIA KIT
+             ========================================== -->
+        <section id="tab-mediakit" class="tab-content">
+            <div class="container">
+                <div class="support-hero text-center">
+                    <span class="badge">Brand Assets</span>
+                    <h2 class="section-title">Media Kit & Branding</h2>
+                    <p class="section-subtitle">Official logos, typography assets, color guides, and screenshots for press reviews.</p>
+                </div>
+                
+                <div class="mediakit-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; max-width: 800px; margin: 0 auto;">
+                    <div class="roadmap-card glass-card">
+                        <h4>Official Logos</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px;">Download RenderLogic logo sets in vector SVG format and high-res transparent PNG formats for light/dark backdrops.</p>
+                        <a href="#" class="btn btn-secondary btn-sm" onclick="alert('Download started...'); return false;">Download Logos (.zip)</a>
+                    </div>
+                    <div class="roadmap-card glass-card">
+                        <h4>Brand Color Guide</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px;">Cyber Cyan: <code>#00f2fe</code><br>Royal Violet: <code>#7f00ff</code><br>Electric Emerald: <code>#10b981</code><br>Obsidian Base: <code>#070709</code></p>
+                        <a href="#" class="btn btn-secondary btn-sm" onclick="alert('Color specs copied...'); return false;">Copy Hex Specs</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==========================================
+             TAB 10: CONTACT
+             ========================================== -->
+        <section id="tab-contact" class="tab-content">
             <div class="container">
                 <div class="contact-box text-center">
                     <h2 class="section-title">Let's Collaborate</h2>
                     <p class="contact-subtitle">Have a post-production project, a software inquiry, or want to discuss a custom tool? Let's connect.</p>
                     
-                    <div class="email-container">
+                    <!-- Contact Form -->
+                    <form class="contact-form glass-card" id="main-contact-form" action="#" method="POST" onsubmit="event.preventDefault();">
+                        <div class="form-row">
+                            <div class="form-half">
+                                <label for="contact-name">Name</label>
+                                <input type="text" id="contact-name" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-half">
+                                <label for="contact-email">Email</label>
+                                <input type="email" id="contact-email" placeholder="Your Email" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-interest">Inquiry Type</label>
+                            <select id="contact-interest">
+                                <option value="film">Film Editing & Directing</option>
+                                <option value="color">DI Color Grading & VFX</option>
+                                <option value="software">Parayu & Software Support</option>
+                                <option value="custom">Custom Development Project</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-message">Message</label>
+                            <textarea id="contact-message" placeholder="Describe your project, inquiry, or idea..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full-width" id="btn-submit-contact">Send Message</button>
+                    </form>
+                    
+                    <div class="email-container" id="email-address-box">
                         <span class="email-text" id="email-address">contact@renderlogic.in</span>
-                        <button class="btn-copy" id="btn-copy-email" title="Copy to Clipboard">
+                        <button class="btn-copy" id="btn-copy-email" aria-label="Copy email address" title="Copy to Clipboard">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                         </button>
                     </div>
-                    <p class="copied-indicator" id="copy-status">Copied to clipboard!</p>
+                    <p class="copied-indicator" id="copy-status" role="alert">Copied to clipboard!</p>
                 </div>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="container footer-container">
             <p>&copy; 2026 RenderLogic Media & Technologies Private Limited. All rights reserved.</p>
             <div class="footer-links">
-                <a href="#services">Services</a>
-                <a href="#products">Products</a>
-                <a href="mailto:contact@renderlogic.in">Email</a>
+                <a href="#creative" class="active" data-tab-target="tab-creative">Creative Studio</a>
+                <a href="#software" data-tab-target="tab-software">Software Lab</a>
+                <a href="#magic" data-tab-target="tab-magic">RenderMagic</a>
             </div>
         </div>
     </footer>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  RenderLogic — XML Sitemap
+  Lists every real, crawlable URL on https://renderlogic.in/.
+  The site is currently a single-page app, so there is one canonical URL.
+  Includes the Google Image-sitemap extension so brand imagery can surface in
+  Google Images. When real sub-pages are added (software, render-magic, parayu,
+  contact, blog…), add a <url> block for each here.
+-->
+<urlset
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <url>
+    <loc>https://renderlogic.in/</loc>
+    <lastmod>2026-06-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://renderlogic.in/assets/logo.png</image:loc>
+      <image:title>RenderLogic — Creative Studio &amp; Software Lab</image:title>
+      <image:caption>RenderLogic: cinematic post-production and offline AI software.</image:caption>
+    </image:image>
+  </url>
+
+</urlset>

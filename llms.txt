@@ -1,0 +1,22 @@
+# RenderLogic
+
+> RenderLogic is a creative studio and software lab combining cinematic
+> post-production with AI software development. Based in Kerala, India.
+
+## About
+RenderLogic operates two sides under one brand:
+- **Creative Studio** — film & video editing, color grading, and directing.
+  Credits include the films *Vichithram* and *Aattam*. Founder: Achu Vijayan.
+- **Software Lab** — offline-first AI applications for creators.
+
+## Products
+- **Parayu** — an offline AI voice-to-text / dictation app for desktop (macOS,
+  Windows) and mobile (iOS, Android).
+- **RenderLogic Director (RenderMagic)** — an AI video-generation application.
+
+## Key pages
+- Home: https://renderlogic.in/
+- Sitemap: https://renderlogic.in/sitemap.xml
+
+## Contact
+- Website: https://renderlogic.in/
