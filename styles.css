@@ -1363,20 +1363,38 @@ a {
     align-items: flex-start;
 }
 
-.founder-avatar-placeholder {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: var(--gradient-brand);
+.founder-avatar-wrapper {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    border-radius: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: var(--font-heading);
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: white;
-    box-shadow: 0 0 25px rgba(0, 242, 254, 0.35);
     flex-shrink: 0;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(14, 14, 18, 0.85);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+.founder-avatar-glow {
+    position: absolute;
+    inset: -20px;
+    background: radial-gradient(circle, rgba(0, 242, 254, 0.18) 0%, rgba(127, 0, 255, 0.12) 50%, transparent 70%);
+    animation: rotate-idle 12s infinite linear;
+    z-index: 1;
+}
+
+.founder-avatar-inner {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 900;
+    background: var(--gradient-brand);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    z-index: 2;
+    letter-spacing: -0.05em;
 }
 
 .founder-bio h3 {
@@ -1385,13 +1403,14 @@ a {
     letter-spacing: -0.01em;
 }
 
-.founder-subtitle-text {
-    font-size: 1rem;
-    color: var(--primary);
-    font-weight: 600;
+.founder-badge-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 20px;
+    color: var(--primary);
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
 }
 
 .founder-description {
@@ -1455,6 +1474,13 @@ a {
 
 .collab-card {
     padding: 36px;
+    transition: var(--transition-smooth);
+}
+
+.collab-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
 }
 
 .collab-header {
@@ -1465,18 +1491,26 @@ a {
 }
 
 .collab-avatar {
-    width: 50px;
-    height: 50px;
+    width: 52px;
+    height: 52px;
     border-radius: 12px;
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--border-color);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: 0.85rem;
-    color: var(--primary);
+    font-size: 1.4rem;
+    transition: var(--transition-smooth);
+}
+
+.collab-avatar.icon-dir { color: var(--primary); box-shadow: 0 0 15px rgba(0, 242, 254, 0.05); }
+.collab-avatar.icon-edit { color: var(--secondary); box-shadow: 0 0 15px rgba(127, 0, 255, 0.05); }
+.collab-avatar.icon-vfx { color: var(--accent); box-shadow: 0 0 15px rgba(16, 185, 129, 0.05); }
+.collab-avatar.icon-dev { color: #f59e0b; box-shadow: 0 0 15px rgba(245, 158, 11, 0.05); }
+
+.collab-card:hover .collab-avatar {
+    transform: scale(1.05);
+    border-color: var(--border-hover);
 }
 
 .collab-header h4 {
@@ -1486,7 +1520,7 @@ a {
 
 .collab-role {
     font-size: 0.8rem;
-    color: var(--secondary);
+    color: var(--primary);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     font-weight: 600;
