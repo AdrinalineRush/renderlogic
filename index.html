@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RenderLogic | Creative Studio & Software Lab</title>
+    <title>RenderLogic | Film Making & Software Lab</title>
     
     <!-- SEO Meta Tags -->
     <meta name="description" content="Cinematic post-production studio and AI software lab. Specializing in video editing, color grading, directing, and offline AI application development.">
@@ -15,14 +15,14 @@
     <!-- Open Graph (Facebook / WhatsApp / LinkedIn link previews) -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://renderlogic.in/">
-    <meta property="og:title" content="RenderLogic | Creative Studio & Software Lab">
+    <meta property="og:title" content="RenderLogic | Film Making & Software Lab">
     <meta property="og:description" content="Cinematic post-production meets software logic. Video editing, color grading, directing, and offline AI tools.">
     <meta property="og:image" content="https://renderlogic.in/assets/logo.png">
     <meta property="og:site_name" content="RenderLogic">
 
     <!-- Twitter / X card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="RenderLogic | Creative Studio & Software Lab">
+    <meta name="twitter:title" content="RenderLogic | Film Making & Software Lab">
     <meta name="twitter:description" content="Cinematic post-production meets software logic. Video editing, color grading, directing, and offline AI tools.">
     <meta name="twitter:image" content="https://renderlogic.in/assets/logo.png">
 
@@ -140,7 +140,7 @@
     <!-- Header Navigation acting as Tab Triggers -->
     <header class="header" id="main-header">
         <div class="container nav-container">
-            <a href="#" class="logo" id="header-logo" aria-label="RenderLogic Home" data-tab-target="tab-creative">
+            <a href="#" class="logo" id="header-logo" aria-label="RenderLogic Home" data-tab-target="tab-home">
                 <span class="logo-icon"></span>
                 <span class="logo-render">Render</span><span class="logo-logic">Logic</span>
             </a>
@@ -153,9 +153,9 @@
             </button>
             
             <nav class="nav" id="navigation-bar" role="navigation">
-                <a href="#creative" class="nav-link active" data-tab-target="tab-creative">Creative Studio</a>
+                <a href="#home" class="nav-link active" data-tab-target="tab-home">Home</a>
+                <a href="#creative" class="nav-link" data-tab-target="tab-creative">Film Making</a>
                 <a href="#software" class="nav-link" data-tab-target="tab-software">Software Lab</a>
-                <a href="#magic" class="nav-link" data-tab-target="tab-magic">RenderMagic</a>
                 <a href="#collaborators" class="nav-link" data-tab-target="tab-collaborators">Leadership & Team</a>
                 
                 <!-- Resources Dropdown -->
@@ -193,9 +193,93 @@
     <main class="main-content-area">
 
         <!-- ==========================================
+             TAB 0: HOME LANDING PAGE (50/50 Dual Mood)
+             ========================================== -->
+        <section id="tab-home" class="tab-content active">
+            <div class="container">
+                <!-- Hero Dual Intro -->
+                <div class="split-hero">
+                    <span class="badge">RenderLogic Studio</span>
+                    <h1 class="font-giant hero-title">Where Cinematic Craft<br><span class="gradient-text">Meets Software Logic.</span></h1>
+                    <p class="hero-subtitle" style="margin-top: 18px;">Led by Achu Vijayan — film editor, director, certified DaVinci Resolve colorist, and software developer. RenderLogic bridges the gap between premium feature film post-production and local, private AI software engineering.</p>
+                </div>
+
+                <!-- 50/50 Split Showcase -->
+                <div class="split-showcase-grid">
+                    <!-- Left: Media & Post-Production -->
+                    <div class="split-card glass-card creative-mood" data-tab-link="tab-creative">
+                        <div class="split-card-glow"></div>
+                        <div>
+                            <div class="split-card-header">
+                                <span class="split-tag">Media Production</span>
+                                <h3>Cinematic Post-Production</h3>
+                            </div>
+                            <div class="split-card-body">
+                                <p>Decade-long feature film editing, directing, and certified DaVinci Resolve color grading for theatrical features, commercials, and brand campaigns.</p>
+                                <ul class="split-bullets">
+                                    <li>🎬 <strong>Feature Films</strong>: Director and editor of acclaimed Malayalam feature films (<em>Vichithram</em>, <em>Charles Enterprises</em>).</li>
+                                    <li>🎨 <strong>Resolve Colorist</strong>: Certified DaVinci Resolve color grader crafting premium visual treatments.</li>
+                                    <li>🎭 <strong>Theatrical Productions</strong>: Editor and co-producer on award-winning features (<em>Aattam</em>, winner of multiple national awards).</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="split-card-footer" style="margin-top: 20px;">
+                            <button class="btn btn-primary" data-tab-target="tab-creative" style="width: 100%;">Explore Film Making</button>
+                        </div>
+                    </div>
+
+                    <!-- Right: Software & Coding -->
+                    <div class="split-card glass-card software-mood" data-tab-link="tab-software">
+                        <div class="split-card-glow"></div>
+                        <div>
+                            <div class="split-card-header">
+                                <span class="split-tag font-mono">Software & Coding</span>
+                                <h3>AI Software Development</h3>
+                            </div>
+                            <div class="split-card-body">
+                                <p>Building high-performance, offline-first artificial intelligence desktop utilities, system translation inputs, and local compilation tool suites.</p>
+                                <ul class="split-bullets font-mono">
+                                    <li>🧠 <strong>Private Inference</strong>: 100% offline text translation models running natively on basic computer hardware.</li>
+                                    <li>🌐 <strong>Parayu Client</strong>: Local transcription client (parayu.online) utilizing Whisper AI engine.</li>
+                                    <li>⚡ <strong>Compiler Pipelines</strong>: Local audio-video media compositing utilities (RenderMagic Director).</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="split-card-footer" style="margin-top: 20px;">
+                            <button class="btn btn-primary btn-purple" data-tab-target="tab-software" style="width: 100%;">Explore Software Lab</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shared Trust / Certifications Banner -->
+                <div class="unified-highlight-banner glass-card">
+                    <div class="banner-stat">
+                        <span class="stat-num">10+</span>
+                        <span class="stat-label">Years Film Experience</span>
+                    </div>
+                    <div class="banner-divider"></div>
+                    <div class="banner-stat">
+                        <span class="stat-num">FE 049</span>
+                        <span class="stat-label">FEFKA Member ID</span>
+                    </div>
+                    <div class="banner-divider"></div>
+                    <div class="banner-stat">
+                        <span class="stat-num">100%</span>
+                        <span class="stat-label">Offline Local AI</span>
+                    </div>
+                    <div class="banner-divider"></div>
+                    <div class="banner-stat">
+                        <span class="stat-num">2K+</span>
+                        <span class="stat-label">Parayu Installs</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
              TAB 1: CREATIVE STUDIO (70% Brand Mood)
              ========================================== -->
-        <section id="tab-creative" class="tab-content active">
+        <section id="tab-creative" class="tab-content">
             <div class="container">
                 <!-- Hero Cinematic Intro -->
                 <div class="cinematic-hero">
@@ -418,9 +502,9 @@
                                 <span class="mockup-url">parayu.online</span>
                             </div>
                             <div class="mockup-content">
-                                <!-- Waveform "പ" logo indicator -->
+                                <!-- Waveform logo indicator -->
                                 <div class="app-logo-container">
-                                    <div class="app-custom-logo">പ</div>
+                                    <img src="assets/logo-parayu.svg" alt="Parayu Logo" class="app-custom-logo">
                                 </div>
                                 <h4>Parayu (Voice-to-Text)</h4>
                                 <p class="app-tag">Whisper AI Offline Engine</p>
@@ -472,10 +556,10 @@
                     
                     <div class="roadmap-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 40px;">
                         
-                        <div class="roadmap-card glass-card" style="padding: 35px; border-radius: 16px; border: 1px solid var(--border-color); background: var(--card-bg); display: flex; flex-direction: column; justify-content: space-between;">
+                        <div class="roadmap-card glass-card" style="padding: 35px; border-radius: 16px; border: 1px solid var(--border-color); background: var(--bg-card); display: flex; flex-direction: column; justify-content: space-between;">
                             <div>
-                                <span class="roadmap-tag" style="background: rgba(0, 242, 254, 0.05); color: var(--primary); border: 1px solid rgba(0, 242, 254, 0.15); padding: 4px 10px; border-radius: 4px; font-size: 11px; font-family: var(--font-mono), monospace; text-transform: uppercase;">Desktop App • Local AI</span>
-                                <h4 style="font-size: 1.35rem; font-weight: 700; margin-top: 18px; margin-bottom: 12px; color: #ffffff;">RenderMagic Director</h4>
+                                <span class="roadmap-tag" style="background: rgba(127, 0, 255, 0.05); color: var(--primary); border: 1px solid rgba(127, 0, 255, 0.15); padding: 4px 10px; border-radius: 4px; font-size: 11px; font-family: var(--font-mono), monospace; text-transform: uppercase;">Desktop App • Local AI</span>
+                                <h4 style="font-size: 1.35rem; font-weight: 700; margin-top: 18px; margin-bottom: 12px; color: var(--text-main);">RenderMagic Director</h4>
                                 <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">Professional local AI video synthesis application. Compiles script, local voiceover, background tracks, and context-synced b-roll footage into complete media compositions entirely offline.</p>
                             </div>
                             <div style="font-family: var(--font-mono), monospace; font-size: 11px; color: var(--primary); font-weight: 500;">
@@ -483,21 +567,21 @@
                             </div>
                         </div>
 
-                        <div class="roadmap-card glass-card" style="padding: 35px; border-radius: 16px; border: 1px solid var(--border-color); background: var(--card-bg); display: flex; flex-direction: column; justify-content: space-between;">
+                        <div class="roadmap-card glass-card" style="padding: 35px; border-radius: 16px; border: 1px solid var(--border-color); background: var(--bg-card); display: flex; flex-direction: column; justify-content: space-between;">
                             <div>
-                                <span class="roadmap-tag" style="background: rgba(16, 185, 129, 0.05); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.15); padding: 4px 10px; border-radius: 4px; font-size: 11px; font-family: var(--font-mono), monospace; text-transform: uppercase;">Mobile App • iOS &amp; Android</span>
-                                <h4 style="font-size: 1.35rem; font-weight: 700; margin-top: 18px; margin-bottom: 12px; color: #ffffff;">Parayu Mobile &amp; Handoff</h4>
+                                <span class="roadmap-tag" style="background: rgba(13, 148, 136, 0.05); color: var(--accent); border: 1px solid rgba(13, 148, 136, 0.15); padding: 4px 10px; border-radius: 4px; font-size: 11px; font-family: var(--font-mono), monospace; text-transform: uppercase;">Mobile App • iOS &amp; Android</span>
+                                <h4 style="font-size: 1.35rem; font-weight: 700; margin-top: 18px; margin-bottom: 12px; color: var(--text-main);">Parayu Mobile &amp; Handoff</h4>
                                 <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">Brings localized offline voice dictation and translation maps to mobile keyboards. Features native Swift/Kotlin bindings for high-speed local inference and wireless desktop handoff.</p>
                             </div>
-                            <div style="font-family: var(--font-mono), monospace; font-size: 11px; color: #10b981; font-weight: 500;">
+                            <div style="font-family: var(--font-mono), monospace; font-size: 11px; color: var(--accent); font-weight: 500;">
                                 📱 native SwiftPM &amp; Android Gradle
                             </div>
                         </div>
 
-                        <div class="roadmap-card glass-card" style="padding: 35px; border-radius: 16px; border: 1px solid var(--border-color); background: var(--card-bg); display: flex; flex-direction: column; justify-content: space-between;">
+                        <div class="roadmap-card glass-card" style="padding: 35px; border-radius: 16px; border: 1px solid var(--border-color); background: var(--bg-card); display: flex; flex-direction: column; justify-content: space-between;">
                             <div>
                                 <span class="roadmap-tag" style="background: rgba(239, 68, 68, 0.05); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.15); padding: 4px 10px; border-radius: 4px; font-size: 11px; font-family: var(--font-mono), monospace; text-transform: uppercase;">Utility • Subtitle Editor</span>
-                                <h4 style="font-size: 1.35rem; font-weight: 700; margin-top: 18px; margin-bottom: 12px; color: #ffffff;">Transcript Studio</h4>
+                                <h4 style="font-size: 1.35rem; font-weight: 700; margin-top: 18px; margin-bottom: 12px; color: var(--text-main);">Transcript Studio</h4>
                                 <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">Standalone transcription companion for post-production editing rooms. Integrates directly with NLE workflows to synchronize subtitle timecodes and format multi-speaker logs.</p>
                             </div>
                             <div style="font-family: var(--font-mono), monospace; font-size: 11px; color: #ef4444; font-weight: 500;">
@@ -505,13 +589,13 @@
                             </div>
                         </div>
 
-                        <div class="roadmap-card glass-card" style="padding: 35px; border-radius: 16px; border: 1px solid var(--border-color); background: var(--card-bg); display: flex; flex-direction: column; justify-content: space-between;">
+                        <div class="roadmap-card glass-card" style="padding: 35px; border-radius: 16px; border: 1px solid var(--border-color); background: var(--bg-card); display: flex; flex-direction: column; justify-content: space-between;">
                             <div>
-                                <span class="roadmap-tag" style="background: rgba(232, 160, 76, 0.05); color: var(--accent); border: 1px solid rgba(232, 160, 76, 0.15); padding: 4px 10px; border-radius: 4px; font-size: 11px; font-family: var(--font-mono), monospace; text-transform: uppercase;">Web App • Active Beta</span>
-                                <h4 style="font-size: 1.35rem; font-weight: 700; margin-top: 18px; margin-bottom: 12px; color: #ffffff;">WhichOTT Search</h4>
+                                <span class="roadmap-tag" style="background: rgba(217, 119, 6, 0.05); color: #d97706; border: 1px solid rgba(217, 119, 6, 0.15); padding: 4px 10px; border-radius: 4px; font-size: 11px; font-family: var(--font-mono), monospace; text-transform: uppercase;">Web App • Active Beta</span>
+                                <h4 style="font-size: 1.35rem; font-weight: 700; margin-top: 18px; margin-bottom: 12px; color: var(--text-main);">WhichOTT Search</h4>
                                 <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">A sleek, ad-free streaming search aggregator. Indexing global distribution matrices to instantly show exactly where a theatrical or web series is available, grouped by mood indices.</p>
                             </div>
-                            <div style="font-family: var(--font-mono), monospace; font-size: 11px; color: var(--accent); font-weight: 500;">
+                            <div style="font-family: var(--font-mono), monospace; font-size: 11px; color: #d97706; font-weight: 500;">
                                 🔍 live metadata aggregation matrix
                             </div>
                         </div>
@@ -521,188 +605,6 @@
             </div>
         </section>
 
-
-        <!-- ==========================================
-             TAB 3: RENDERMAGIC (AI Video Director)
-             ========================================== -->
-        <section id="tab-magic" class="tab-content">
-            <div class="container">
-                <div class="magic-hero text-center">
-                    <span class="badge">AI Video Generator</span>
-                    <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 20px;">
-                        <span class="logo-icon" style="width:16px; height:16px; box-shadow: 0 0 15px var(--primary);"></span>
-                        <h2 class="section-title" style="margin-bottom: 0;">RenderMagic Director</h2>
-                    </div>
-                    <p class="section-subtitle">Instantly generate high-definition short videos from a single subject prompt. Synthesizes copy, scripts, voiceovers, background music, and composited timeline tracks locally.</p>
-                </div>
-                
-                <div class="magic-workspace-grid">
-                    <!-- Streamlit configuration sidebar style (upgraded) -->
-                    <div class="magic-config-sidebar glass-card">
-                        <h3>Configuration Panel</h3>
-                        
-                        <div class="input-group">
-                            <label for="magic-subject">Video Topic / Subject</label>
-                            <textarea id="magic-subject" placeholder="Enter what your video is about... (e.g. History of cinema editing, Evolution of CGI)"></textarea>
-                        </div>
-                        
-                        <div class="input-row">
-                            <div class="input-half">
-                                <label for="magic-aspect">Aspect Ratio</label>
-                                <select id="magic-aspect">
-                                    <option value="9:16">Vertical (9:16) — TikTok/Reels</option>
-                                    <option value="16:9" selected>Horizontal (16:9) — YouTube/Film</option>
-                                    <option value="1:1">Square (1:1)</option>
-                                </select>
-                            </div>
-                            
-                            <div class="input-half">
-                                <label for="magic-voice">Voice Narrator</label>
-                                <select id="magic-voice">
-                                    <option value="alloy">OpenAI Alloy (English)</option>
-                                    <option value="echo">OpenAI Echo (Deep Male)</option>
-                                    <option value="nova">OpenAI Nova (Female Accent)</option>
-                                    <option value="edge-ml">Local Malayalam Narrator</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div class="input-row">
-                            <div class="input-half">
-                                <label for="magic-sub-theme">Subtitle Theme</label>
-                                <select id="magic-sub-theme">
-                                    <option value="cinematic">Cinematic Bottom (Soft border)</option>
-                                    <option value="tiktok">TikTok Style (Yellow pop)</option>
-                                    <option value="minimal">Minimalist (Top center)</option>
-                                </select>
-                            </div>
-                            
-                            <div class="input-half">
-                                <label for="magic-bgm">Background Track</label>
-                                <select id="magic-bgm">
-                                    <option value="ambient">Ambient Cinematic Space</option>
-                                    <option value="cyber">Cyberpunk Synthwave</option>
-                                    <option value="epic">Epic Orchestral Build</option>
-                                    <option value="none">No Background Music</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <button class="btn btn-primary btn-full-width" id="btn-generate-magic">
-                            Generate Magic Video
-                        </button>
-                    </div>
-                    
-                    <!-- Main Render Display -->
-                    <div class="magic-render-display glass-card" id="magic-display-panel">
-                        <!-- Idle state -->
-                        <div class="display-idle" id="magic-display-idle">
-                            <div class="display-icon">⚙️</div>
-                            <h4>Ready for Generation</h4>
-                            <p>Configure parameters on the left panel and click generate to initiate local script writing, voiceover synthesis, and clip composition.</p>
-                        </div>
-                        
-                        <!-- Rendering State (Hidden by default) -->
-                        <div class="display-rendering" id="magic-display-rendering" style="display: none;">
-                            <div class="magic-spinner"></div>
-                            <h4>Synthesizing Assets...</h4>
-                            <div class="progress-bar-container">
-                                <div class="progress-bar-fill" id="magic-progress-bar"></div>
-                            </div>
-                            <ul class="rendering-steps" id="rendering-steps-list">
-                                <li class="step-item" id="step-script">📝 Writing script...</li>
-                                <li class="step-item" id="step-voice">🎙️ Generating voiceover...</li>
-                                <li class="step-item" id="step-clips">🎥 Searching b-roll...</li>
-                                <li class="step-item" id="step-compositing">Compositing timeline...</li>
-                            </ul>
-                        </div>
-                        
-                        <!-- Output Player State (Hidden by default) -->
-                        <div class="display-player" id="magic-display-player" style="display: none;">
-                            <div class="mock-player-frame">
-                                <!-- Dynamic Render output simulated screen -->
-                                <div class="player-screen" id="player-screen-visual">
-                                    <div class="cinema-filter"></div>
-                                    <div class="mock-subtitles" id="player-subtitles">"In the early days of cinema, editing was a purely physical process..."</div>
-                                </div>
-                                <div class="player-controls">
-                                    <button class="player-ctrl-btn" id="btn-player-play-toggle">Pause</button>
-                                    <div class="player-timeline">
-                                        <div class="player-progress-fill" id="player-timeline-fill" style="width: 25%;"></div>
-                                    </div>
-                                    <span class="player-time-label" id="player-time-display">00:08 / 00:15</span>
-                                </div>
-                            </div>
-                            <div class="player-meta-info">
-                                <h3>Generated Output Result</h3>
-                                <p>Resolution: 1920x1080 (HD) | Codec: H.264 MP4 | Audio: stereo 48kHz</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Pitch & System Requirements Section -->
-                <div class="magic-specs-grid" style="margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
-                    <!-- Features Card -->
-                    <div class="glass-card" style="padding: 24px; border-radius: 18px; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(255, 255, 255, 0.01);">
-                        <h3 style="font-family: var(--font-heading); font-size: 18px; font-weight: 700; margin-bottom: 16px; color: #ffffff; display: flex; align-items: center; gap: 8px;">
-                            🎬 A Film Director in Your Terminal
-                        </h3>
-                        <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px;">
-                            RenderMagic Director acts like a virtual post-production crew running locally on your computer. With a single topic prompt, the tool automates the entire video creation pipeline:
-                        </p>
-                        <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; padding-left: 0;">
-                            <li style="font-size: 13px; color: #ffffff; display: flex; align-items: center; gap: 8px;">
-                                <span style="color: var(--primary);">✓</span> <strong>Topic Research:</strong> Instantly collects narrative context.
-                            </li>
-                            <li style="font-size: 13px; color: #ffffff; display: flex; align-items: center; gap: 8px;">
-                                <span style="color: var(--primary);">✓</span> <strong>Scriptwriter:</strong> Writes structured video script narration.
-                            </li>
-                            <li style="font-size: 13px; color: #ffffff; display: flex; align-items: center; gap: 8px;">
-                                <span style="color: var(--primary);">✓</span> <strong>Footage Selection:</strong> Picks and sequences matching raw clips.
-                            </li>
-                            <li style="font-size: 13px; color: #ffffff; display: flex; align-items: center; gap: 8px;">
-                                <span style="color: var(--primary);">✓</span> <strong>Voice Narrator:</strong> Synthesizes local audio voiceover tracks.
-                            </li>
-                            <li style="font-size: 13px; color: #ffffff; display: flex; align-items: center; gap: 8px;">
-                                <span style="color: var(--primary);">✓</span> <strong>HD Compilation:</strong> Compiles and exports final MP4 videos in minutes.
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- System Specs Card -->
-                    <div class="glass-card" style="padding: 24px; border-radius: 18px; border: 1px solid rgba(255, 255, 255, 0.05); background: rgba(255, 255, 255, 0.01); display: flex; flex-direction: column; justify-content: space-between;">
-                        <div>
-                            <h3 style="font-family: var(--font-heading); font-size: 18px; font-weight: 700; margin-bottom: 16px; color: #ffffff; display: flex; align-items: center; gap: 8px;">
-                                💻 Minimum System Requirements
-                            </h3>
-                            <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px;">
-                                No expensive cloud-GPU subscriptions. Turn any basic laptop into an offline <strong>content factory</strong> with local execution boundaries:
-                            </p>
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
-                                <div style="background: rgba(255,255,255,0.02); padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.03);">
-                                    <span style="font-size: 10px; text-transform: uppercase; color: var(--primary); font-weight: 700;">Processor</span>
-                                    <h4 style="font-size: 15px; color: #ffffff; margin-top: 4px;">CPU is Enough</h4>
-                                </div>
-                                <div style="background: rgba(255,255,255,0.02); padding: 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.03);">
-                                    <span style="font-size: 10px; text-transform: uppercase; color: var(--primary); font-weight: 700;">System Memory</span>
-                                    <h4 style="font-size: 15px; color: #ffffff; margin-top: 4px;">~4 GB RAM</h4>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div style="background: rgba(0, 242, 254, 0.03); border: 1px solid rgba(0, 242, 254, 0.15); padding: 14px; border-radius: 12px;">
-                            <h5 style="font-size: 12px; color: var(--primary); font-weight: 700; margin-bottom: 4px; display: flex; align-items: center; gap: 6px;">
-                                📝 Verification Case Study
-                            </h5>
-                            <p style="font-size: 11.5px; color: var(--text-muted); line-height: 1.5; margin: 0;">
-                                Prompting the word <strong>"health"</strong> generates a complete 60-second ready-to-publish video (with voiceover, matching footage, and synced subtitles) in less than 4 minutes.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
 
         <!-- ==========================================
@@ -921,7 +823,7 @@
                 
                 <div class="affiliate-details glass-card" style="max-width: 800px; margin: 0 auto; padding: 40px;">
                     <h3>Earn 20% Recurring Commission</h3>
-                    <p class="section-desc" style="margin-top: 14px;">Recommend our local AI tools (like Parayu) or refer post-production clients to our Creative Studio. For every active subscription, license key purchase, or signed film/commercial editorial contract, you earn a 20% recurring monthly payout.</p>
+                    <p class="section-desc" style="margin-top: 14px;">Recommend our local AI tools (like Parayu) or refer post-production clients to our Film Making studio. For every active subscription, license key purchase, or signed film/commercial editorial contract, you earn a 20% recurring monthly payout.</p>
                     
                     <div class="bullet-card" style="margin-top: 30px; border: 1px solid var(--border-color); border-radius: 8px; padding: 20px;">
                         <h4>How it works:</h4>
@@ -1013,9 +915,8 @@
         <div class="container footer-container">
             <p>&copy; 2026 RenderLogic Media & Technologies Private Limited. All rights reserved.</p>
             <div class="footer-links">
-                <a href="#creative" class="active" data-tab-target="tab-creative">Creative Studio</a>
+                <a href="#creative" class="active" data-tab-target="tab-creative">Film Making</a>
                 <a href="#software" data-tab-target="tab-software">Software Lab</a>
-                <a href="#magic" data-tab-target="tab-magic">RenderMagic</a>
             </div>
         </div>
     </footer>

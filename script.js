@@ -79,6 +79,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Split showcase cards click triggers
+    const splitCards = document.querySelectorAll('.split-card');
+    splitCards.forEach(card => {
+        card.addEventListener('click', (e) => {
+            // If the user clicked the actual button inside, let its own listener handle it
+            if (e.target.tagName === 'BUTTON') return;
+            
+            const targetTabId = card.getAttribute('data-tab-link');
+            switchTab(targetTabId);
+            const cleanHash = targetTabId.replace('tab-', '');
+            history.pushState(null, null, `#${cleanHash}`);
+        });
+    });
+
     // Mobile resources dropdown click toggle handler
     const resourcesTrigger = document.getElementById('nav-resources-trigger');
     const resourcesDropdown = document.getElementById('resources-dropdown');
@@ -233,246 +247,127 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // 5. Parayu Typist simulator (Software Lab Tab)
     // ==========================================
-    const parayuPhrases = [
-        "Speak naturally, and watch it transcribe in real-time...",
-        "Parayu dictation works fully offline using local AI model weights.",
-        "Your private voice logs never leave this physical computer.",
-        "Fast, offline dictation optimized for Indian languages."
-    ];
-    let parayuPhraseIndex = 0;
     const parayuTranscriptionBox = document.getElementById('parayu-transcription-box');
     const parayuWaveBars = document.querySelectorAll('.wave-bar');
+    let parayuCycleTimeout = null;
     let parayuTypingInterval = null;
 
-    function simulateParayuTranscription() {
-        const phrase = parayuPhrases[parayuPhraseIndex];
-        let charIndex = 0;
-        
-        if (parayuTranscriptionBox) {
-            parayuTranscriptionBox.textContent = '"';
+    const parayuCycles = [
+        {
+            // Cycle 1: Malayalam translation demo
+            steps: [
+                { type: "idle", text: "[⌥Space to start speaking...]" },
+                { type: "speaking", text: "ഇന്നലെ ഞാൻ അയച്ച ഇമെയിൽ വായിച്ചുനോക്കിയോ..." },
+                { type: "processing", text: "[Whisper AI translating: Malayalam ➜ English...]" },
+                { type: "completed", text: "\"Did you read the email I sent yesterday?\"" }
+            ]
+        },
+        {
+            // Cycle 2: Stutter & grammar correction demo
+            steps: [
+                { type: "idle", text: "[⌥Space to start speaking...]" },
+                { type: "speaking", text: "We need... we need to deploy... deploy the models... models offline..." },
+                { type: "processing", text: "[On-device AI cleaning up stutters & grammar...]" },
+                { type: "completed", text: "\"We need to deploy the models offline.\"" }
+            ]
+        },
+        {
+            // Cycle 3: Dictionary rewrite demo
+            steps: [
+                { type: "idle", text: "[⌥Space to start speaking...]" },
+                { type: "speaking", text: "Welcome to parayoo..." },
+                { type: "processing", text: "[Dictionary mapping: parayoo ➜ Parayu...]" },
+                { type: "completed", text: "\"Welcome to Parayu.\"" }
+            ]
         }
-        
-        // Active audio wave pulses
-        parayuWaveBars.forEach(bar => {
-            bar.style.animationPlayState = 'running';
-            bar.style.opacity = '1';
-        });
-        
-        parayuTypingInterval = setInterval(() => {
-            if (charIndex < phrase.length) {
-                parayuTranscriptionBox.textContent += phrase[charIndex];
-                charIndex++;
-            } else {
-                parayuTranscriptionBox.textContent += '"';
-                clearInterval(parayuTypingInterval);
-                
-                // Slow down audio waves on finish
-                parayuWaveBars.forEach(bar => {
-                    bar.style.animationPlayState = 'paused';
-                    bar.style.opacity = '0.5';
-                });
-                
-                setTimeout(() => {
-                    parayuPhraseIndex = (parayuPhraseIndex + 1) % parayuPhrases.length;
-                    simulateParayuTranscription();
-                }, 4000);
-            }
-        }, 55);
-    }
-    simulateParayuTranscription();
-
-
-    // ==========================================
-    // 6. RenderMagic Generation Simulator
-    // ==========================================
-    const btnGenerate = document.getElementById('btn-generate-magic');
-    const displayIdle = document.getElementById('magic-display-idle');
-    const displayRendering = document.getElementById('magic-display-rendering');
-    const displayPlayer = document.getElementById('magic-display-player');
-    const progressBar = document.getElementById('magic-progress-bar');
-    const inputSubject = document.getElementById('magic-subject');
-
-    // Rendering steps selectors
-    const stepScript = document.getElementById('step-script');
-    const stepVoice = document.getElementById('step-voice');
-    const stepClips = document.getElementById('step-clips');
-    const stepCompositing = document.getElementById('step-compositing');
-
-    if (btnGenerate && inputSubject) {
-        btnGenerate.addEventListener('click', () => {
-            const subjectText = inputSubject.value.trim();
-            if (!subjectText) {
-                alert('Please enter a video topic or subject first!');
-                return;
-            }
-
-            // Disable generate button during process
-            btnGenerate.disabled = true;
-            btnGenerate.textContent = "Processing...";
-
-            // Shift states: Idle -> Rendering
-            if (displayIdle) displayIdle.style.display = 'none';
-            if (displayPlayer) displayPlayer.style.display = 'none';
-            if (displayRendering) displayRendering.style.display = 'block';
-
-            // Reset rendering indicators
-            if (progressBar) progressBar.style.width = '0%';
-            const steps = [stepScript, stepVoice, stepClips, stepCompositing];
-            steps.forEach(s => {
-                if (s) {
-                    s.classList.remove('active', 'done');
-                }
-            });
-
-            // Simulate Multi-step progress timeline
-            let progress = 0;
-            const progressInterval = setInterval(() => {
-                progress += 2;
-                if (progressBar) progressBar.style.width = `${progress}%`;
-
-                // step 1: Writing Script (0% to 25%)
-                if (progress >= 0 && progress < 25) {
-                    if (stepScript) stepScript.classList.add('active');
-                }
-                // step 2: Synthesizing TTS (25% to 50%)
-                else if (progress >= 25 && progress < 50) {
-                    if (stepScript) {
-                        stepScript.classList.remove('active');
-                        stepScript.classList.add('done');
-                    }
-                    if (stepVoice) stepVoice.classList.add('active');
-                }
-                // step 3: Media clips (50% to 75%)
-                else if (progress >= 50 && progress < 75) {
-                    if (stepVoice) {
-                        stepVoice.classList.remove('active');
-                        stepVoice.classList.add('done');
-                    }
-                    if (stepClips) stepClips.classList.add('active');
-                }
-                // step 4: Compositing (75% to 99%)
-                else if (progress >= 75 && progress < 100) {
-                    if (stepClips) {
-                        stepClips.classList.remove('active');
-                        stepClips.classList.add('done');
-                    }
-                    if (stepCompositing) stepCompositing.classList.add('active');
-                }
-
-                // Render Complete (100%)
-                if (progress >= 100) {
-                    clearInterval(progressInterval);
-                    if (stepCompositing) {
-                        stepCompositing.classList.remove('active');
-                        stepCompositing.classList.add('done');
-                    }
-                    
-                    // Delay slightly and swap: Rendering -> Player Output
-                    setTimeout(() => {
-                        if (displayRendering) displayRendering.style.display = 'none';
-                        if (displayPlayer) displayPlayer.style.display = 'block';
-                        
-                        btnGenerate.disabled = false;
-                        btnGenerate.textContent = "Generate Magic Video";
-                        
-                        // Boot output player loop
-                        startMockPlayerPlayback(subjectText);
-                    }, 500);
-                }
-            }, 100); // Fills in ~5 seconds
-        });
-    }
-
-    // Output Player Playback parameters
-    let playerTimerId = null;
-    let playerTimeProgress = 0;
-    let isPlayerPlaying = true;
-    let currentSubtitleIndex = 0;
-
-    const btnPlayerPlay = document.getElementById('btn-player-play-toggle');
-    const playerTimelineFill = document.getElementById('player-timeline-fill');
-    const playerTimeDisplay = document.getElementById('player-time-display');
-    const playerSubtitles = document.getElementById('player-subtitles');
-    const playerScreen = document.getElementById('player-screen-visual');
-
-    const playerPhrases = [
-        "In the early days of cinema, pacing was physically crafted strip by strip.",
-        "Today, RenderMagic compiles and sequences audio-visual assets locally.",
-        "Synthesizing high-fidelity outputs directly on consumer GPUs.",
-        "Crafting private local tools with flawless post-production logic."
     ];
 
-    function startMockPlayerPlayback(subjectText) {
-        // Reset player parameters
-        playerTimeProgress = 0;
-        currentSubtitleIndex = 0;
-        isPlayerPlaying = true;
-        if (btnPlayerPlay) btnPlayerPlay.textContent = "Pause";
-        
-        // Custom color shift on player screen visual matching subject text to feel "generated"
-        if (playerScreen) {
-            const hueShift = Math.floor(Math.random() * 360);
-            playerScreen.style.filter = `hue-rotate(${hueShift}deg)`;
+    let currentCycleIndex = 0;
+    let currentStepIndex = 0;
+
+    function runParayuSimulation() {
+        if (!parayuTranscriptionBox) return;
+
+        // Clear any running intervals/timeouts
+        clearInterval(parayuTypingInterval);
+        clearTimeout(parayuCycleTimeout);
+
+        const cycle = parayuCycles[currentCycleIndex];
+        const step = cycle.steps[currentStepIndex];
+
+        // Format transcription container styling
+        if (step.type === "idle" || step.type === "processing") {
+            parayuTranscriptionBox.style.fontStyle = "italic";
+            parayuTranscriptionBox.style.opacity = "0.6";
+            parayuTranscriptionBox.textContent = step.text;
+        } else {
+            parayuTranscriptionBox.style.fontStyle = "normal";
+            parayuTranscriptionBox.style.opacity = "1";
         }
 
-        // Initialize first subtitle phrase
-        if (playerSubtitles) {
-            playerSubtitles.textContent = `"${playerPhrases[0]}"`;
+        // Configure audio waves animation states
+        if (step.type === "speaking") {
+            parayuWaveBars.forEach(bar => {
+                bar.style.animationPlayState = 'running';
+                bar.style.opacity = '1';
+                bar.style.background = 'var(--gradient-brand)';
+            });
+        } else if (step.type === "processing") {
+            parayuWaveBars.forEach(bar => {
+                bar.style.animationPlayState = 'running';
+                bar.style.opacity = '0.7';
+                bar.style.background = 'var(--primary)';
+            });
+        } else {
+            parayuWaveBars.forEach(bar => {
+                bar.style.animationPlayState = 'paused';
+                bar.style.opacity = '0.3';
+            });
         }
 
-        if (playerTimerId) clearInterval(playerTimerId);
-        
-        playerTimerId = setInterval(() => {
-            if (!isPlayerPlaying) return;
+        // Animate simulated typist workflow
+        if (step.type === "speaking" || step.type === "completed") {
+            parayuTranscriptionBox.textContent = "";
+            let charIndex = 0;
+            const textToType = step.text;
 
-            playerTimeProgress += 1;
-            
-            // Progress width (video duration ~ 15 seconds)
-            const percent = (playerTimeProgress / 150) * 100;
-            if (playerTimelineFill) {
-                playerTimelineFill.style.width = `${percent}%`;
-            }
-
-            // Update Time stamps
-            const seconds = Math.floor(playerTimeProgress / 10);
-            const stampSec = seconds < 10 ? `0${seconds}` : seconds;
-            if (playerTimeDisplay) {
-                playerTimeDisplay.textContent = `00:${stampSec} / 00:15`;
-            }
-
-            // Shuffle Subtitle phrases every 3.5 seconds
-            const phraseIdx = Math.min(Math.floor(playerTimeProgress / 38), playerPhrases.length - 1);
-            if (phraseIdx !== currentSubtitleIndex) {
-                currentSubtitleIndex = phraseIdx;
-                if (playerSubtitles) {
-                    playerSubtitles.textContent = `"${playerPhrases[currentSubtitleIndex]}"`;
+            parayuTypingInterval = setInterval(() => {
+                if (charIndex < textToType.length) {
+                    parayuTranscriptionBox.textContent += textToType[charIndex];
+                    charIndex++;
+                } else {
+                    clearInterval(parayuTypingInterval);
+                    
+                    // Show success system-wide indicator
+                    if (step.type === "completed") {
+                        parayuTranscriptionBox.innerHTML += '<div style="font-size: 0.72rem; color: var(--accent); font-weight: 700; margin-top: 8px; font-family: var(--font-body); display: flex; align-items: center; justify-content: center; gap: 4px;">✓ Pasted system-wide</div>';
+                    }
+                    
+                    proceedToNextStep(4500);
                 }
-            }
-
-            // Finish playback loop
-            if (playerTimeProgress >= 150) {
-                clearInterval(playerTimerId);
-                if (btnPlayerPlay) btnPlayerPlay.textContent = "Replay";
-                isPlayerPlaying = false;
-            }
-        }, 100);
+            }, step.type === "speaking" ? 65 : 40);
+        } else {
+            // Idle and processing steps show static info boxes
+            const delay = step.type === "idle" ? 2200 : 1800;
+            proceedToNextStep(delay);
+        }
     }
 
-    if (btnPlayerPlay) {
-        btnPlayerPlay.addEventListener('click', () => {
-            if (btnPlayerPlay.textContent === "Replay") {
-                startMockPlayerPlayback(inputSubject.value || "RenderMagic Preview");
-                return;
+    function proceedToNextStep(delay) {
+        parayuCycleTimeout = setTimeout(() => {
+            currentStepIndex++;
+            if (currentStepIndex >= parayuCycles[currentCycleIndex].steps.length) {
+                currentStepIndex = 0;
+                currentCycleIndex = (currentCycleIndex + 1) % parayuCycles.length;
             }
-
-            isPlayerPlaying = !isPlayerPlaying;
-            if (isPlayerPlaying) {
-                btnPlayerPlay.textContent = "Pause";
-            } else {
-                btnPlayerPlay.textContent = "Play";
-            }
-        });
+            runParayuSimulation();
+        }, delay);
     }
+
+    runParayuSimulation();
+
+
+
 
 
     // ==========================================
