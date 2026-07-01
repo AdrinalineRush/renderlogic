@@ -1353,7 +1353,7 @@ a {
     grid-template-columns: 1.25fr 0.75fr;
     gap: 40px;
     padding: 50px;
-    align-items: center;
+    align-items: flex-start;
     margin-top: 60px;
 }
 
