@@ -146,14 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Follow the OS theme until the visitor makes an explicit choice
-    try {
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-            if (!localStorage.getItem('rl-theme')) {
-                document.documentElement.classList.toggle('dark', e.matches);
-            }
-        });
-    } catch (e) {}
+
 
 
     // ==========================================
