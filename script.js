@@ -134,6 +134,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ==========================================
+    // 2.5 Light / Dark Theme Toggle
+    // ==========================================
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.toggle('dark');
+            try {
+                localStorage.setItem('rl-theme', isDark ? 'dark' : 'light');
+            } catch (e) {}
+        });
+    }
+
+    // Follow the OS theme until the visitor makes an explicit choice
+    try {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('rl-theme')) {
+                document.documentElement.classList.toggle('dark', e.matches);
+            }
+        });
+    } catch (e) {}
+
+
+    // ==========================================
     // 3. Email Clipboard Copy Action
     // ==========================================
     const emailAddressElement = document.getElementById('email-address');

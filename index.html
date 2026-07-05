@@ -126,6 +126,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
+    <!-- Theme init (runs before paint to avoid a flash of the wrong theme) -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('rl-theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (stored === 'dark' || (!stored && prefersDark)) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
     <!-- Style Sheet -->
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -185,6 +198,10 @@
                     </div>
                 </div>
                 
+                <button class="theme-toggle" id="theme-toggle-btn" type="button" aria-label="Toggle dark mode" title="Toggle light / dark">
+                    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+                </button>
                 <a href="#contact" class="btn btn-nav" data-tab-target="tab-contact">Get In Touch</a>
             </nav>
         </div>
@@ -360,7 +377,7 @@
                     </div>
                     <div class="portfolio-grid">
                         <div class="portfolio-card glass-card">
-                            <div class="portfolio-thumbnail" style="background-image: radial-gradient(circle at center, rgba(127, 0, 255, 0.15), transparent 80%);">
+                            <div class="portfolio-thumbnail" style="background-image: radial-gradient(circle at center, rgba(160, 43, 176, 0.15), transparent 80%);">
                                 <span class="portfolio-badge">Directorial Debut</span>
                             </div>
                             <div class="portfolio-info">
@@ -371,7 +388,7 @@
                         </div>
                         
                         <div class="portfolio-card glass-card">
-                            <div class="portfolio-thumbnail" style="background-image: radial-gradient(circle at center, rgba(0, 242, 254, 0.15), transparent 80%);">
+                            <div class="portfolio-thumbnail" style="background-image: radial-gradient(circle at center, rgba(13, 148, 136, 0.15), transparent 80%);">
                                 <span class="portfolio-badge">3× National Award Winner</span>
                             </div>
                             <div class="portfolio-info">
@@ -410,7 +427,7 @@
                     </div>
                     <div class="portfolio-grid">
                         <div class="portfolio-card glass-card">
-                            <div class="portfolio-thumbnail" style="background-image: radial-gradient(circle at center, rgba(0, 242, 254, 0.15), transparent 80%);">
+                            <div class="portfolio-thumbnail" style="background-image: radial-gradient(circle at center, rgba(13, 148, 136, 0.15), transparent 80%);">
                                 <span class="portfolio-badge">AI Brand Campaign</span>
                             </div>
                             <div class="portfolio-info">
@@ -432,7 +449,7 @@
                         </div>
 
                         <div class="portfolio-card glass-card">
-                            <div class="portfolio-thumbnail" style="background-image: radial-gradient(circle at center, rgba(127, 0, 255, 0.15), transparent 80%);">
+                            <div class="portfolio-thumbnail" style="background-image: radial-gradient(circle at center, rgba(160, 43, 176, 0.15), transparent 80%);">
                                 <span class="portfolio-badge">AI Banking Campaign</span>
                             </div>
                             <div class="portfolio-info">
@@ -558,7 +575,7 @@
                         
                         <div class="roadmap-card glass-card" style="padding: 35px; border-radius: 16px; border: 1px solid var(--border-color); background: var(--bg-card); display: flex; flex-direction: column; justify-content: space-between;">
                             <div>
-                                <span class="roadmap-tag" style="background: rgba(127, 0, 255, 0.05); color: var(--primary); border: 1px solid rgba(127, 0, 255, 0.15); padding: 4px 10px; border-radius: 4px; font-size: 11px; font-family: var(--font-mono), monospace; text-transform: uppercase;">Desktop App • Local AI</span>
+                                <span class="roadmap-tag" style="background: rgba(224, 30, 65, 0.05); color: var(--primary); border: 1px solid rgba(224, 30, 65, 0.15); padding: 4px 10px; border-radius: 4px; font-size: 11px; font-family: var(--font-mono), monospace; text-transform: uppercase;">Desktop App • Local AI</span>
                                 <h4 style="font-size: 1.35rem; font-weight: 700; margin-top: 18px; margin-bottom: 12px; color: var(--text-main);">RenderMagic Director</h4>
                                 <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">Professional local AI video synthesis application. Compiles script, local voiceover, background tracks, and context-synced b-roll footage into complete media compositions entirely offline.</p>
                             </div>
@@ -853,7 +870,7 @@
                     </div>
                     <div class="roadmap-card glass-card">
                         <h4>Brand Color Guide</h4>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px;">Cyber Cyan: <code>#00f2fe</code><br>Royal Violet: <code>#7f00ff</code><br>Electric Emerald: <code>#10b981</code><br>Obsidian Base: <code>#070709</code></p>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px;">Crimson (Brand): <code>#e01e41</code><br>Violet-Magenta: <code>#a02bb0</code><br>Signal Teal: <code>#0d9488</code><br>Off-White / Obsidian: <code>#fcfbfa</code> / <code>#0a0a0b</code></p>
                         <a href="#" class="btn btn-secondary btn-sm" onclick="alert('Color specs copied...'); return false;">Copy Hex Specs</a>
                     </div>
                 </div>
