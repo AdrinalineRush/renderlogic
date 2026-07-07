@@ -356,13 +356,15 @@ html.dark .theme-toggle .icon-moon { display: none; }
     gap: 6px;
 }
 
-.logo-icon {
-    width: 8px;
-    height: 8px;
-    background: var(--gradient-brand);
-    border-radius: 50%;
-    display: inline-block;
-    box-shadow: 0 0 10px var(--primary);
+.logo-mark-img {
+    height: 28px;
+    width: auto;
+    object-fit: contain;
+    transition: filter 0.3s ease;
+}
+
+[data-theme="dark"] .logo-mark-img {
+    filter: invert(1) brightness(1.2);
 }
 
 .logo-render {
@@ -816,10 +818,54 @@ html.dark .theme-toggle .icon-moon { display: none; }
 
 .portfolio-thumbnail {
     height: 250px;
-    background: var(--surface-1);
+    background: #0d0c0b;
     position: relative;
     border-bottom: 1px solid var(--border-color);
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.thumbnail-blur-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(16px) brightness(0.35);
+    transform: scale(1.15);
+    z-index: 1;
+    opacity: 0.9;
+}
+
+.thumbnail-poster-img {
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portfolio-card:hover .thumbnail-poster-img {
+    transform: scale(1.04);
+}
+
+.thumbnail-cover-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portfolio-card:hover .thumbnail-cover-img {
+    transform: scale(1.04);
 }
 
 .portfolio-badge {
@@ -1975,4 +2021,126 @@ html.dark .theme-toggle .icon-moon { display: none; }
         width: 60px;
         height: 1px;
     }
+}
+
+/* Vertical Poster Grid Rules */
+.portfolio-grid.vertical-posters {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+@media (max-width: 1024px) {
+    .portfolio-grid.vertical-posters {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .portfolio-grid.vertical-posters {
+        grid-template-columns: 1fr;
+    }
+}
+
+.vertical-poster-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.vertical-poster-thumbnail {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    position: relative;
+    border-bottom: 1px solid var(--border-color);
+    overflow: hidden;
+    background: #090909;
+    border-radius: 12px 12px 0 0;
+}
+
+.vertical-poster-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vertical-poster-card:hover .vertical-poster-img {
+    transform: scale(1.05);
+}
+
+/* Filmography Table Styling */
+.filmography-table-wrapper {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    background: var(--surface-1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+}
+
+.filmography-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.filmography-table th {
+    background: var(--surface-2);
+    padding: 16px 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--primary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.filmography-table td {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+.filmography-table tr:last-child td {
+    border-bottom: none;
+}
+
+.filmography-table tr:hover td {
+    background: rgba(224, 30, 65, 0.02);
+}
+
+.role-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 100px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.role-badge.director {
+    background: rgba(224, 30, 65, 0.08);
+    color: var(--primary);
+    border: 1px solid rgba(224, 30, 65, 0.2);
+}
+
+.role-badge.producer {
+    background: rgba(13, 148, 136, 0.08);
+    color: var(--accent);
+    border: 1px solid rgba(13, 148, 136, 0.2);
+}
+
+.role-badge.editor {
+    background: rgba(139, 92, 246, 0.08);
+    color: #8b5cf6;
+    border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.role-badge.spoteditor {
+    background: rgba(249, 115, 22, 0.08);
+    color: #f97316;
+    border: 1px solid rgba(249, 115, 22, 0.2);
 }

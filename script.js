@@ -261,126 +261,155 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ==========================================
-    // 5. Parayu Typist simulator (Software Lab Tab)
+    // 5. Parayu Screenshot 3D Spatial Deck (Software Lab Tab)
     // ==========================================
-    const parayuTranscriptionBox = document.getElementById('parayu-transcription-box');
-    const parayuWaveBars = document.querySelectorAll('.wave-bar');
-    let parayuCycleTimeout = null;
-    let parayuTypingInterval = null;
-
-    const parayuCycles = [
-        {
-            // Cycle 1: Malayalam translation demo
-            steps: [
-                { type: "idle", text: "[⌥Space to start speaking...]" },
-                { type: "speaking", text: "ഇന്നലെ ഞാൻ അയച്ച ഇമെയിൽ വായിച്ചുനോക്കിയോ..." },
-                { type: "processing", text: "[Whisper AI translating: Malayalam ➜ English...]" },
-                { type: "completed", text: "\"Did you read the email I sent yesterday?\"" }
-            ]
-        },
-        {
-            // Cycle 2: Stutter & grammar correction demo
-            steps: [
-                { type: "idle", text: "[⌥Space to start speaking...]" },
-                { type: "speaking", text: "We need... we need to deploy... deploy the models... models offline..." },
-                { type: "processing", text: "[On-device AI cleaning up stutters & grammar...]" },
-                { type: "completed", text: "\"We need to deploy the models offline.\"" }
-            ]
-        },
-        {
-            // Cycle 3: Dictionary rewrite demo
-            steps: [
-                { type: "idle", text: "[⌥Space to start speaking...]" },
-                { type: "speaking", text: "Welcome to parayoo..." },
-                { type: "processing", text: "[Dictionary mapping: parayoo ➜ Parayu...]" },
-                { type: "completed", text: "\"Welcome to Parayu.\"" }
-            ]
-        }
+    const slideDeckItems = document.querySelectorAll('.slide-deck-item');
+    const screenshotLabel = document.getElementById('screenshot-tab-label');
+    const sliderDots = document.querySelectorAll('.slider-dot');
+    let currentScreenshotIndex = 0;
+    let autoplayInterval = null;
+    
+    const screenshotLabels = [
+        "Home Dashboard",
+        "Parayu History Logs",
+        "Custom Personal Dictionary",
+        "Snippets & Templates",
+        "System Settings & Brain Switch"
     ];
-
-    let currentCycleIndex = 0;
-    let currentStepIndex = 0;
-
-    function runParayuSimulation() {
-        if (!parayuTranscriptionBox) return;
-
-        // Clear any running intervals/timeouts
-        clearInterval(parayuTypingInterval);
-        clearTimeout(parayuCycleTimeout);
-
-        const cycle = parayuCycles[currentCycleIndex];
-        const step = cycle.steps[currentStepIndex];
-
-        // Format transcription container styling
-        if (step.type === "idle" || step.type === "processing") {
-            parayuTranscriptionBox.style.fontStyle = "italic";
-            parayuTranscriptionBox.style.opacity = "0.6";
-            parayuTranscriptionBox.textContent = step.text;
-        } else {
-            parayuTranscriptionBox.style.fontStyle = "normal";
-            parayuTranscriptionBox.style.opacity = "1";
-        }
-
-        // Configure audio waves animation states
-        if (step.type === "speaking") {
-            parayuWaveBars.forEach(bar => {
-                bar.style.animationPlayState = 'running';
-                bar.style.opacity = '1';
-                bar.style.background = 'var(--gradient-brand)';
-            });
-        } else if (step.type === "processing") {
-            parayuWaveBars.forEach(bar => {
-                bar.style.animationPlayState = 'running';
-                bar.style.opacity = '0.7';
-                bar.style.background = 'var(--primary)';
-            });
-        } else {
-            parayuWaveBars.forEach(bar => {
-                bar.style.animationPlayState = 'paused';
-                bar.style.opacity = '0.3';
-            });
-        }
-
-        // Animate simulated typist workflow
-        if (step.type === "speaking" || step.type === "completed") {
-            parayuTranscriptionBox.textContent = "";
-            let charIndex = 0;
-            const textToType = step.text;
-
-            parayuTypingInterval = setInterval(() => {
-                if (charIndex < textToType.length) {
-                    parayuTranscriptionBox.textContent += textToType[charIndex];
-                    charIndex++;
-                } else {
-                    clearInterval(parayuTypingInterval);
-                    
-                    // Show success system-wide indicator
-                    if (step.type === "completed") {
-                        parayuTranscriptionBox.innerHTML += '<div style="font-size: 0.72rem; color: var(--accent); font-weight: 700; margin-top: 8px; font-family: var(--font-body); display: flex; align-items: center; justify-content: center; gap: 4px;">✓ Pasted system-wide</div>';
-                    }
-                    
-                    proceedToNextStep(4500);
+    
+    function update3DDeck() {
+        if (!slideDeckItems || slideDeckItems.length === 0) return;
+        const totalSlides = slideDeckItems.length;
+        
+        slideDeckItems.forEach((slide, i) => {
+            // Calculate relative offset (diff) from active slide
+            let diff = i - currentScreenshotIndex;
+            if (diff < -2) diff += totalSlides;
+            if (diff > 2) diff -= totalSlides;
+            
+            const sheen = slide.querySelector('.glossy-sheen');
+            
+            if (diff === 0) {
+                slide.style.cursor = 'default';
+                slide.style.pointerEvents = 'auto';
+                
+                // Active Slide: center stage, fully focused, normal size
+                slide.style.transform = 'translate3d(0, 0, 0) rotateY(0deg) scale(1)';
+                slide.style.opacity = '1';
+                slide.style.zIndex = '10';
+                slide.style.filter = 'brightness(1) blur(0px)';
+                slide.classList.add('active');
+                
+                // Sweep sheen shine effect across screen!
+                if (sheen) {
+                    sheen.style.transition = 'none';
+                    sheen.style.left = '-150%';
+                    sheen.offsetHeight; // trigger reflow
+                    sheen.style.transition = 'left 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+                    sheen.style.left = '150%';
                 }
-            }, step.type === "speaking" ? 65 : 40);
-        } else {
-            // Idle and processing steps show static info boxes
-            const delay = step.type === "idle" ? 2200 : 1800;
-            proceedToNextStep(delay);
+            } else if (diff === 1 || diff === -4) {
+                slide.style.cursor = 'pointer';
+                slide.style.pointerEvents = 'auto';
+                
+                // Next Slide: stacked slightly right behind center
+                slide.style.transform = 'translate3d(15%, 0, -120px) rotateY(-20deg) scale(0.92)';
+                slide.style.opacity = '0.55';
+                slide.style.zIndex = '5';
+                slide.style.filter = 'brightness(0.65) blur(1.5px)';
+                slide.classList.remove('active');
+                if (sheen) {
+                    sheen.style.transition = 'none';
+                    sheen.style.left = '-150%';
+                }
+            } else if (diff === -1 || diff === 4) {
+                slide.style.cursor = 'pointer';
+                slide.style.pointerEvents = 'auto';
+                
+                // Previous Slide: stacked slightly left behind center
+                slide.style.transform = 'translate3d(-15%, 0, -120px) rotateY(20deg) scale(0.92)';
+                slide.style.opacity = '0.55';
+                slide.style.zIndex = '5';
+                slide.style.filter = 'brightness(0.65) blur(1.5px)';
+                slide.classList.remove('active');
+                if (sheen) {
+                    sheen.style.transition = 'none';
+                    sheen.style.left = '-150%';
+                }
+            } else {
+                slide.style.cursor = 'default';
+                slide.style.pointerEvents = 'none';
+                
+                // Far slides: pushed further back, invisible
+                const xOffset = diff > 0 ? '60%' : '-60%';
+                const yRotation = diff > 0 ? '-35deg' : '35deg';
+                slide.style.transform = `translate3d(${xOffset}, 0, -250px) rotateY(${yRotation}) scale(0.85)`;
+                slide.style.opacity = '0';
+                slide.style.zIndex = '2';
+                slide.style.filter = 'brightness(0.4) blur(3px)';
+                slide.classList.remove('active');
+                if (sheen) {
+                    sheen.style.transition = 'none';
+                    sheen.style.left = '-150%';
+                }
+            }
+            
+            // Sync dots
+            if (sliderDots[i]) {
+                const isSelected = i === currentScreenshotIndex;
+                sliderDots[i].style.opacity = isSelected ? '1' : '0.4';
+                sliderDots[i].style.transform = isSelected ? 'scale(1.2)' : 'scale(1)';
+            }
+        });
+        
+        // Update label
+        if (screenshotLabel) {
+            screenshotLabel.textContent = `View: ${screenshotLabels[currentScreenshotIndex]}`;
+            screenshotLabel.style.transform = 'scale(1.05)';
+            setTimeout(() => {
+                screenshotLabel.style.transform = 'scale(1)';
+            }, 300);
         }
     }
-
-    function proceedToNextStep(delay) {
-        parayuCycleTimeout = setTimeout(() => {
-            currentStepIndex++;
-            if (currentStepIndex >= parayuCycles[currentCycleIndex].steps.length) {
-                currentStepIndex = 0;
-                currentCycleIndex = (currentCycleIndex + 1) % parayuCycles.length;
-            }
-            runParayuSimulation();
-        }, delay);
+    
+    function resetAutoplay() {
+        if (autoplayInterval) {
+            clearInterval(autoplayInterval);
+        }
+        autoplayInterval = setInterval(() => {
+            currentScreenshotIndex = (currentScreenshotIndex + 1) % slideDeckItems.length;
+            update3DDeck();
+        }, 3200); // 3.2 seconds autoplay when idle
     }
-
-    runParayuSimulation();
+    
+    // Add Click Listeners directly to cards
+    slideDeckItems.forEach((slide, i) => {
+        slide.addEventListener('click', () => {
+            if (currentScreenshotIndex !== i) {
+                currentScreenshotIndex = i;
+                update3DDeck();
+                resetAutoplay(); // Reset timer so user can explore
+            }
+        });
+    });
+    
+    // Add Click Listeners to navigation dots
+    sliderDots.forEach((dot, i) => {
+        dot.style.cursor = 'pointer';
+        dot.addEventListener('click', () => {
+            if (currentScreenshotIndex !== i) {
+                currentScreenshotIndex = i;
+                update3DDeck();
+                resetAutoplay();
+            }
+        });
+    });
+    
+    // Initialize
+    if (slideDeckItems.length > 0) {
+        update3DDeck();
+        resetAutoplay();
+    }
 
 
 
