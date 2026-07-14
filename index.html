@@ -154,7 +154,8 @@
     <header class="header" id="main-header">
         <div class="container nav-container">
             <a href="#" class="logo" id="header-logo" aria-label="RenderLogic Home" data-tab-target="tab-home">
-                <img src="assets/logo-mark.png" alt="Render Logic logo mark" class="logo-mark-img" />
+                <img src="assets/logo-day.png" alt="Render Logic logo mark" class="logo-mark-img logo-mark-day" />
+                <img src="assets/logo-night.png" alt="Render Logic logo mark" class="logo-mark-img logo-mark-night" />
                 <span class="logo-render">Render</span><span class="logo-logic">Logic</span>
             </a>
             
@@ -747,10 +748,11 @@
 
                 <!-- Showcase Flagship: Parayu -->
                 <div class="parayu-showcase-grid">
-                    <div class="parayu-visual-mockup" style="perspective: 1400px; padding: 15px 0 30px 0; overflow: visible; display: flex; flex-direction: column; align-items: center;">
+                    <div class="parayu-visual-mockup cinematic-deck" style="perspective: 1400px; padding: 15px 0 30px 0; overflow: visible; display: flex; flex-direction: column; align-items: center;">
+                        <div class="deck-aurora" aria-hidden="true"></div>
                         <!-- Centered Header Label to Avoid UI Obstruction -->
-                        <div id="screenshot-tab-label" style="background: var(--surface-2); border: 1px solid var(--border-color); color: var(--text-color); padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: 700; font-family: var(--font-body); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 20px; transition: transform 0.3s; pointer-events: none; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
-                            View: Home Dashboard
+                        <div id="screenshot-tab-label" class="deck-view-label" style="background: var(--surface-2); border: 1px solid var(--border-color); color: var(--text-color); padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: 700; font-family: var(--font-body); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 20px; transition: transform 0.3s; pointer-events: none; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                            <span class="deck-label-count">01 / 06</span><span class="deck-label-text">Home Dashboard</span>
                         </div>
 
                         <div class="mockup-frame" style="position: relative; width: 100%; aspect-ratio: 1180/740; overflow: visible; background: none; border: none; box-shadow: none;">
@@ -775,20 +777,28 @@
                                 <img src="assets/settings.png" alt="Settings" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
                                 <div class="glossy-sheen" style="position: absolute; top: 0; left: -150%; width: 100%; height: 100%; background: linear-gradient(105deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0) 70%); transition: left 0.8s cubic-bezier(0.16, 1, 0.3, 1); pointer-events: none; z-index: 2;"></div>
                             </div>
+                            <div class="slide-deck-item" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 12px; overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.15); border: 1px solid var(--border-color); background: #faf9f7; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s, filter 0.8s, z-index 0.8s; transform-style: preserve-3d; will-change: transform, opacity, filter; z-index: 2; opacity: 0; transform: translate3d(-60%, 0, -250px) rotateY(35deg) scale(0.85); filter: brightness(0.4) blur(3px);">
+                                <img src="assets/voice.png" alt="Your Voice Insights" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+                                <div class="glossy-sheen" style="position: absolute; top: 0; left: -150%; width: 100%; height: 100%; background: linear-gradient(105deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0) 70%); transition: left 0.8s cubic-bezier(0.16, 1, 0.3, 1); pointer-events: none; z-index: 2;"></div>
+                            </div>
 
                             <!-- Carousel Navigation Indicators -->
-                            <div style="position: absolute; bottom: 20px; right: 20px; display: flex; gap: 8px; z-index: 20;">
+                            <button class="deck-arrow deck-arrow-prev" type="button" aria-label="Previous screenshot">&#8592;</button>
+                            <button class="deck-arrow deck-arrow-next" type="button" aria-label="Next screenshot">&#8594;</button>
+                            <div class="deck-pagination" style="position: absolute; bottom: 20px; right: 20px; display: flex; gap: 8px; z-index: 20;">
                                 <span class="slider-dot active" style="width: 8px; height: 8px; border-radius: 50%; background: #ffffff; opacity: 1; transition: all 0.3s; transform: scale(1.2);" data-index="0"></span>
                                 <span class="slider-dot" style="width: 8px; height: 8px; border-radius: 50%; background: #ffffff; opacity: 0.4; transition: all 0.3s;" data-index="1"></span>
                                 <span class="slider-dot" style="width: 8px; height: 8px; border-radius: 50%; background: #ffffff; opacity: 0.4; transition: all 0.3s;" data-index="2"></span>
                                 <span class="slider-dot" style="width: 8px; height: 8px; border-radius: 50%; background: #ffffff; opacity: 0.4; transition: all 0.3s;" data-index="3"></span>
                                 <span class="slider-dot" style="width: 8px; height: 8px; border-radius: 50%; background: #ffffff; opacity: 0.4; transition: all 0.3s;" data-index="4"></span>
+                                <span class="slider-dot" style="width: 8px; height: 8px; border-radius: 50%; background: #ffffff; opacity: 0.4; transition: all 0.3s;" data-index="5"></span>
                             </div>
+                            <div class="deck-progress" aria-hidden="true"><span></span></div>
                         </div>
                     </div>
                     
                     <div class="parayu-details-content">
-                        <h3>Parayu Voice Dictation</h3>
+                        <h3>Parayu AI Voice Assist</h3>
                         <p class="section-desc">Our flagship application for macOS and Windows. Uses local Whisper AI models on your own machine—transcribing instantly directly into whichever text application you are currently typing in.</p>
                         
                         <div class="feature-bullets-grid">

@@ -266,148 +266,183 @@ document.addEventListener('DOMContentLoaded', () => {
     const slideDeckItems = document.querySelectorAll('.slide-deck-item');
     const screenshotLabel = document.getElementById('screenshot-tab-label');
     const sliderDots = document.querySelectorAll('.slider-dot');
+    const deckRoot = document.querySelector('.cinematic-deck');
+    const deckFrame = deckRoot?.querySelector('.mockup-frame');
+    const deckProgress = deckRoot?.querySelector('.deck-progress');
+    const prevDeckButton = deckRoot?.querySelector('.deck-arrow-prev');
+    const nextDeckButton = deckRoot?.querySelector('.deck-arrow-next');
     let currentScreenshotIndex = 0;
     let autoplayInterval = null;
+    let dragStartX = null;
+    let lastDirection = 1;
     
     const screenshotLabels = [
         "Home Dashboard",
         "Parayu History Logs",
         "Custom Personal Dictionary",
         "Snippets & Templates",
-        "System Settings & Brain Switch"
+        "System Settings & Brain Switch",
+        "Your Voice Insights"
     ];
     
-    function update3DDeck() {
-        if (!slideDeckItems || slideDeckItems.length === 0) return;
+    function animateDeckProgress() {
+        if (!deckProgress) return;
+        deckProgress.classList.remove('is-running');
+        deckProgress.offsetWidth;
+        deckProgress.classList.add('is-running');
+    }
+
+    function updateDeckUI() {
         const totalSlides = slideDeckItems.length;
-        
         slideDeckItems.forEach((slide, i) => {
-            // Calculate relative offset (diff) from active slide
-            let diff = i - currentScreenshotIndex;
-            if (diff < -2) diff += totalSlides;
-            if (diff > 2) diff -= totalSlides;
-            
-            const sheen = slide.querySelector('.glossy-sheen');
-            
-            if (diff === 0) {
-                slide.style.cursor = 'default';
-                slide.style.pointerEvents = 'auto';
-                
-                // Active Slide: center stage, fully focused, normal size
-                slide.style.transform = 'translate3d(0, 0, 0) rotateY(0deg) scale(1)';
-                slide.style.opacity = '1';
-                slide.style.zIndex = '10';
-                slide.style.filter = 'brightness(1) blur(0px)';
-                slide.classList.add('active');
-                
-                // Sweep sheen shine effect across screen!
-                if (sheen) {
-                    sheen.style.transition = 'none';
-                    sheen.style.left = '-150%';
-                    sheen.offsetHeight; // trigger reflow
-                    sheen.style.transition = 'left 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
-                    sheen.style.left = '150%';
-                }
-            } else if (diff === 1 || diff === -4) {
-                slide.style.cursor = 'pointer';
-                slide.style.pointerEvents = 'auto';
-                
-                // Next Slide: stacked slightly right behind center
-                slide.style.transform = 'translate3d(15%, 0, -120px) rotateY(-20deg) scale(0.92)';
-                slide.style.opacity = '0.55';
-                slide.style.zIndex = '5';
-                slide.style.filter = 'brightness(0.65) blur(1.5px)';
-                slide.classList.remove('active');
-                if (sheen) {
-                    sheen.style.transition = 'none';
-                    sheen.style.left = '-150%';
-                }
-            } else if (diff === -1 || diff === 4) {
-                slide.style.cursor = 'pointer';
-                slide.style.pointerEvents = 'auto';
-                
-                // Previous Slide: stacked slightly left behind center
-                slide.style.transform = 'translate3d(-15%, 0, -120px) rotateY(20deg) scale(0.92)';
-                slide.style.opacity = '0.55';
-                slide.style.zIndex = '5';
-                slide.style.filter = 'brightness(0.65) blur(1.5px)';
-                slide.classList.remove('active');
-                if (sheen) {
-                    sheen.style.transition = 'none';
-                    sheen.style.left = '-150%';
-                }
-            } else {
-                slide.style.cursor = 'default';
-                slide.style.pointerEvents = 'none';
-                
-                // Far slides: pushed further back, invisible
-                const xOffset = diff > 0 ? '60%' : '-60%';
-                const yRotation = diff > 0 ? '-35deg' : '35deg';
-                slide.style.transform = `translate3d(${xOffset}, 0, -250px) rotateY(${yRotation}) scale(0.85)`;
-                slide.style.opacity = '0';
-                slide.style.zIndex = '2';
-                slide.style.filter = 'brightness(0.4) blur(3px)';
-                slide.classList.remove('active');
-                if (sheen) {
-                    sheen.style.transition = 'none';
-                    sheen.style.left = '-150%';
-                }
-            }
-            
-            // Sync dots
+            slide.style.transform = '';
+            slide.style.opacity = '';
+            slide.style.filter = '';
+            slide.style.zIndex = '';
+            slide.style.pointerEvents = '';
+            slide.classList.toggle('active', i === currentScreenshotIndex);
             if (sliderDots[i]) {
                 const isSelected = i === currentScreenshotIndex;
                 sliderDots[i].style.opacity = isSelected ? '1' : '0.4';
-                sliderDots[i].style.transform = isSelected ? 'scale(1.2)' : 'scale(1)';
+                sliderDots[i].classList.toggle('active', isSelected);
+                sliderDots[i].setAttribute('aria-current', isSelected ? 'true' : 'false');
             }
         });
         
-        // Update label
         if (screenshotLabel) {
-            screenshotLabel.textContent = `View: ${screenshotLabels[currentScreenshotIndex]}`;
-            screenshotLabel.style.transform = 'scale(1.05)';
-            setTimeout(() => {
-                screenshotLabel.style.transform = 'scale(1)';
-            }, 300);
+            const count = screenshotLabel.querySelector('.deck-label-count');
+            const text = screenshotLabel.querySelector('.deck-label-text');
+            if (count) count.textContent = `${String(currentScreenshotIndex + 1).padStart(2, '0')} / ${String(totalSlides).padStart(2, '0')}`;
+            if (text) text.textContent = screenshotLabels[currentScreenshotIndex];
+            screenshotLabel.animate(
+                [
+                    { opacity: 0, transform: `translateY(${lastDirection * 8}px)` },
+                    { opacity: 1, transform: 'translateY(0)' }
+                ],
+                { duration: 420, easing: 'cubic-bezier(.16,1,.3,1)' }
+            );
         }
+        animateDeckProgress();
     }
-    
-    function resetAutoplay() {
-        if (autoplayInterval) {
-            clearInterval(autoplayInterval);
+
+    function goToScreenshot(index, userInitiated = false) {
+        const total = slideDeckItems.length;
+        const next = (index + total) % total;
+        if (next === currentScreenshotIndex) return;
+        const previous = currentScreenshotIndex;
+        const rawDiff = next - currentScreenshotIndex;
+        lastDirection = Math.abs(rawDiff) > total / 2 ? -Math.sign(rawDiff) : Math.sign(rawDiff);
+        const outgoing = slideDeckItems[previous];
+        const incoming = slideDeckItems[next];
+        slideDeckItems.forEach((slide) => slide.getAnimations().forEach((animation) => animation.cancel()));
+        currentScreenshotIndex = next;
+        updateDeckUI();
+
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            if (userInitiated) resetAutoplay();
+            return;
         }
-        autoplayInterval = setInterval(() => {
-            currentScreenshotIndex = (currentScreenshotIndex + 1) % slideDeckItems.length;
-            update3DDeck();
-        }, 3200); // 3.2 seconds autoplay when idle
-    }
-    
-    // Add Click Listeners directly to cards
-    slideDeckItems.forEach((slide, i) => {
-        slide.addEventListener('click', () => {
-            if (currentScreenshotIndex !== i) {
-                currentScreenshotIndex = i;
-                update3DDeck();
-                resetAutoplay(); // Reset timer so user can explore
+
+        // Contemporary editorial transition: split the outgoing interface into
+        // staggered slices while the next product view resolves underneath.
+        if (deckFrame) {
+            const transitionLayer = document.createElement('div');
+            transitionLayer.className = 'deck-transition-layer';
+            const sourceImage = outgoing.querySelector('img');
+            const shardCount = window.innerWidth < 640 ? 4 : 7;
+
+            if (sourceImage) {
+                for (let shardIndex = 0; shardIndex < shardCount; shardIndex += 1) {
+                    const shard = document.createElement('div');
+                    const shardImage = sourceImage.cloneNode(true);
+                    const left = (shardIndex / shardCount) * 100;
+                    const right = 100 - ((shardIndex + 1) / shardCount) * 100;
+                    shard.className = 'deck-shard';
+                    shard.style.clipPath = `inset(0 ${right}% 0 ${left}%)`;
+                    shard.appendChild(shardImage);
+                    transitionLayer.appendChild(shard);
+
+                    const verticalDrift = (shardIndex % 2 === 0 ? -1 : 1) * (10 + shardIndex * 1.5);
+                    shard.animate([
+                        { transform: 'translate3d(0,0,0) scale(1)', opacity: 1 },
+                        { transform: `translate3d(${-lastDirection * (2.5 + shardIndex * .35)}%, ${verticalDrift}%, 0) scale(.985)`, opacity: 0 }
+                    ], {
+                        duration: 580 + shardIndex * 38,
+                        delay: shardIndex * 24,
+                        easing: 'cubic-bezier(.65,0,.35,1)',
+                        fill: 'forwards'
+                    });
+                }
             }
-        });
+
+            const scan = document.createElement('span');
+            scan.className = 'deck-scan';
+            transitionLayer.appendChild(scan);
+            deckFrame.appendChild(transitionLayer);
+            window.setTimeout(() => transitionLayer.remove(), 980);
+        }
+
+        incoming.animate([
+            { transform: `translate3d(${lastDirection * 2.2}%, 0, 0) scale(1.045)`, filter: 'blur(7px) saturate(.8)', opacity: .35 },
+            { transform: 'translate3d(0,0,0) scale(1)', filter: 'blur(0) saturate(1)', opacity: 1 }
+        ], { duration: 820, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'forwards' });
+
+        if (userInitiated) resetAutoplay();
+    }
+
+    function resetAutoplay() {
+        if (autoplayInterval) clearInterval(autoplayInterval);
+        animateDeckProgress();
+        autoplayInterval = setInterval(() => {
+            goToScreenshot(currentScreenshotIndex + 1);
+        }, 6400);
+    }
+
+    slideDeckItems.forEach((slide, i) => {
+        slide.addEventListener('click', () => goToScreenshot(i, true));
     });
-    
-    // Add Click Listeners to navigation dots
+
     sliderDots.forEach((dot, i) => {
         dot.style.cursor = 'pointer';
-        dot.addEventListener('click', () => {
-            if (currentScreenshotIndex !== i) {
-                currentScreenshotIndex = i;
-                update3DDeck();
-                resetAutoplay();
+        dot.setAttribute('role', 'button');
+        dot.setAttribute('aria-label', `Show ${screenshotLabels[i]}`);
+        dot.tabIndex = 0;
+        dot.addEventListener('click', () => goToScreenshot(i, true));
+        dot.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                goToScreenshot(i, true);
             }
         });
     });
-    
-    // Initialize
+
+    prevDeckButton?.addEventListener('click', () => goToScreenshot(currentScreenshotIndex - 1, true));
+    nextDeckButton?.addEventListener('click', () => goToScreenshot(currentScreenshotIndex + 1, true));
+
+    if (deckFrame) {
+        deckFrame.addEventListener('pointerdown', (event) => { dragStartX = event.clientX; });
+        deckFrame.addEventListener('pointerup', (event) => {
+            if (dragStartX === null) return;
+            const distance = event.clientX - dragStartX;
+            dragStartX = null;
+            if (Math.abs(distance) > 42) goToScreenshot(currentScreenshotIndex + (distance < 0 ? 1 : -1), true);
+        });
+    }
+
+    deckRoot?.addEventListener('mouseenter', () => {
+        if (autoplayInterval) clearInterval(autoplayInterval);
+        deckProgress?.classList.remove('is-running');
+    });
+    deckRoot?.addEventListener('mouseleave', resetAutoplay);
+
+    document.addEventListener('keydown', (event) => {
+        if (!deckRoot?.matches(':hover')) return;
+        if (event.key === 'ArrowLeft') goToScreenshot(currentScreenshotIndex - 1, true);
+        if (event.key === 'ArrowRight') goToScreenshot(currentScreenshotIndex + 1, true);
+    });
+
     if (slideDeckItems.length > 0) {
-        update3DDeck();
+        updateDeckUI();
         resetAutoplay();
     }
 

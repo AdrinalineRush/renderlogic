@@ -30,6 +30,7 @@
     --text-main: #1c1b19;      /* Warm charcoal */
     --text-muted: #706b61;     /* Muted body (Parayu) */
     --text-dark: #9a938a;      /* Faint / placeholder */
+    --text-color: var(--text-main); /* Alias — legacy inline styles reference --text-color; tracks html.dark */
 
     /* Gradients */
     --gradient-brand: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
@@ -48,6 +49,7 @@
     --max-width: 1200px;
     --font-heading: 'Outfit', sans-serif;
     --font-body: 'Inter', sans-serif;
+    --font-mono: ui-monospace, 'SF Mono', 'Cascadia Code', 'Roboto Mono', monospace;
     --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     --transition-theme: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
@@ -357,15 +359,18 @@ html.dark .theme-toggle .icon-moon { display: none; }
 }
 
 .logo-mark-img {
-    height: 28px;
-    width: auto;
-    object-fit: contain;
-    transition: filter 0.3s ease;
+    display: block;
+    height: 34px;
+    width: 34px;
+    object-fit: cover;
+    border-radius: 9px;
+    border: 1px solid var(--border-color);
 }
 
-[data-theme="dark"] .logo-mark-img {
-    filter: invert(1) brightness(1.2);
-}
+/* Theme-specific logo marks: Day art in light, Night art in dark */
+.logo-mark-night { display: none; }
+html.dark .logo-mark-day { display: none; }
+html.dark .logo-mark-night { display: block; }
 
 .logo-render {
     color: var(--text-main);
@@ -967,6 +972,216 @@ html.dark .theme-toggle .icon-moon { display: none; }
 
 .parayu-visual-mockup {
     width: 100%;
+}
+
+/* Premium product showcase — restrained motion, editorial controls */
+.cinematic-deck {
+    --deck-x: 50%;
+    --deck-y: 45%;
+    position: relative;
+    isolation: isolate;
+    perspective: 1400px !important;
+}
+
+.deck-aurora {
+    position: absolute;
+    inset: 18% -10% -4%;
+    z-index: -1;
+    pointer-events: none;
+    opacity: .2;
+    filter: blur(64px);
+    background:
+        radial-gradient(circle at 50% 45%, rgba(224, 30, 65, .18), transparent 40%),
+        radial-gradient(circle at 72% 38%, rgba(160, 43, 176, .14), transparent 42%);
+    transition: background-position .6s ease;
+}
+
+.deck-view-label {
+    position: absolute !important;
+    top: -19px;
+    left: 18px;
+    z-index: 30;
+    display: inline-flex !important;
+    align-items: center;
+    gap: 12px;
+    margin: 0 !important;
+    padding: 8px 10px 8px 12px !important;
+    overflow: hidden;
+    background: color-mix(in srgb, var(--bg-card) 88%, transparent) !important;
+    backdrop-filter: blur(20px) saturate(1.25);
+    box-shadow: 0 8px 28px rgba(28, 27, 25, .1) !important;
+}
+
+.deck-label-count {
+    color: var(--primary);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: .08em;
+}
+
+.deck-label-text {
+    min-width: 0;
+    padding: 0 4px 0 0;
+    text-align: left;
+    background: transparent;
+}
+
+.cinematic-deck .mockup-frame {
+    overflow: hidden !important;
+    touch-action: pan-y;
+    border: 1px solid color-mix(in srgb, var(--border-color) 82%, transparent) !important;
+    border-radius: 16px !important;
+    background: var(--bg-card) !important;
+    box-shadow: 0 28px 70px rgba(28, 27, 25, .16), 0 3px 12px rgba(28, 27, 25, .08) !important;
+}
+
+.cinematic-deck .slide-deck-item {
+    transform-origin: center center;
+    backface-visibility: hidden;
+    border: 0 !important;
+    border-radius: 15px !important;
+    box-shadow: none !important;
+    opacity: 0;
+    pointer-events: none;
+    transform: none;
+    will-change: transform, opacity;
+}
+
+.cinematic-deck .slide-deck-item.active {
+    z-index: 2;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.cinematic-deck .glossy-sheen { display: none; }
+
+.deck-transition-layer,
+.deck-shard,
+.deck-shard img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.deck-transition-layer {
+    z-index: 12;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.deck-shard {
+    will-change: transform, opacity;
+}
+
+.deck-shard img {
+    display: block;
+    object-fit: cover;
+}
+
+.deck-scan {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -18%;
+    width: 14%;
+    opacity: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.86) 46%, rgba(224,30,65,.72) 52%, transparent);
+    filter: blur(1px);
+    transform: skewX(-10deg);
+    animation: deck-scan 720ms cubic-bezier(.16,1,.3,1) 80ms both;
+}
+
+@keyframes deck-scan {
+    0% { left: -18%; opacity: 0; }
+    15% { opacity: .72; }
+    72% { opacity: .38; }
+    100% { left: 110%; opacity: 0; }
+}
+
+.deck-arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 40;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255,255,255,.28);
+    border-radius: 12px;
+    color: #fff;
+    background: rgba(16, 14, 18, .58);
+    backdrop-filter: blur(18px) saturate(1.3);
+    box-shadow: 0 8px 24px rgba(0,0,0,.16);
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(-50%);
+    transition: opacity .2s ease, background .2s ease, border-color .2s ease;
+}
+
+.deck-arrow-prev { left: 14px; }
+.deck-arrow-next { right: 14px; }
+.cinematic-deck:hover .deck-arrow,
+.deck-arrow:focus-visible { opacity: 1; }
+.deck-arrow:hover { background: rgba(224, 30, 65, .92); border-color: rgba(255,255,255,.5); }
+
+.deck-pagination {
+    left: 50% !important;
+    right: auto !important;
+    bottom: 12px !important;
+    align-items: center;
+    padding: 6px 8px;
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 999px;
+    background: rgba(12, 10, 15, .48);
+    backdrop-filter: blur(18px) saturate(1.2);
+    transform: translateX(-50%);
+}
+
+.deck-pagination .slider-dot {
+    width: 6px !important;
+    height: 6px !important;
+    transform: none !important;
+    transition: width .4s cubic-bezier(.2,.8,.2,1), opacity .3s ease, background .3s ease !important;
+}
+
+.deck-pagination .slider-dot.active {
+    width: 18px !important;
+    border-radius: 999px !important;
+    background: var(--primary) !important;
+}
+
+.deck-progress {
+    position: absolute;
+    right: 0;
+    bottom: -10px;
+    left: 0;
+    z-index: 22;
+    height: 2px;
+    overflow: hidden;
+    border-radius: 99px;
+    background: color-mix(in srgb, var(--border-color) 55%, transparent);
+}
+
+.deck-progress span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform: scaleX(0);
+    transform-origin: left;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+}
+
+.deck-progress.is-running span { animation: deck-progress 6.4s linear forwards; }
+@keyframes deck-progress { to { transform: scaleX(1); } }
+
+@media (max-width: 768px) {
+    .deck-arrow { display: none; }
+    .deck-view-label { top: -16px; left: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cinematic-deck .slide-deck-item { transition-duration: .01ms !important; }
+    .deck-transition-layer { display: none; }
+    .deck-progress { display: none; }
 }
 
 .mockup-frame {
@@ -2143,4 +2358,89 @@ html.dark .theme-toggle .icon-moon { display: none; }
     background: rgba(249, 115, 22, 0.08);
     color: #f97316;
     border: 1px solid rgba(249, 115, 22, 0.2);
+}
+
+/* ==========================================================================
+   Filmography → stacked cards on phones.
+   The 5-column table overflows horizontally on narrow screens, so each row
+   is reflowed into a self-contained card (year eyebrow, title, roles, notes).
+   ========================================================================== */
+@media (max-width: 768px) {
+    .filmography-table-wrapper.glass-card {
+        overflow-x: visible;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border-radius: 0;
+    }
+
+    .filmography-table thead {
+        display: none; /* column labels move into each card's visual hierarchy */
+    }
+
+    .filmography-table,
+    .filmography-table tbody,
+    .filmography-table tr,
+    .filmography-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .filmography-table tr {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 14px;
+        padding: 18px 20px;
+        margin-bottom: 14px;
+        box-shadow: var(--shadow-card);
+    }
+
+    .filmography-table td {
+        padding: 0 !important;
+        border-bottom: none !important;
+    }
+
+    /* Year — small crimson eyebrow */
+    .filmography-table td:nth-child(1) {
+        font-size: 0.72rem !important;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+    }
+
+    /* Film title — card heading */
+    .filmography-table td:nth-child(2) {
+        font-size: 1.15rem !important;
+        line-height: 1.25;
+        color: var(--text-main) !important;
+        margin-bottom: 12px;
+    }
+
+    /* Role badges — wrap onto their own row */
+    .filmography-table td:nth-child(3) {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 12px;
+    }
+
+    /* Language */
+    .filmography-table td:nth-child(4) {
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        margin-bottom: 8px;
+    }
+    .filmography-table td:nth-child(4)::before {
+        content: "🌐 ";
+    }
+
+    /* Production credits / notes */
+    .filmography-table td:nth-child(5) {
+        font-size: 0.86rem;
+        line-height: 1.55;
+        color: var(--text-muted);
+    }
 }
