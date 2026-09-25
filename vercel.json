@@ -1,0 +1,19 @@
+{
+  "redirects": [
+    {
+      "source": "/boom",
+      "destination": "/boom/",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/boom/",
+      "destination": "https://boom-black.vercel.app/"
+    },
+    {
+      "source": "/boom/:path*",
+      "destination": "https://boom-black.vercel.app/:path*"
+    }
+  ]
+}
