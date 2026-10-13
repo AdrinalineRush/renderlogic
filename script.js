@@ -3,6 +3,28 @@
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+    const analyticsId = 'G-XNH281S53R';
+
+    function trackEvent(eventName, parameters = {}) {
+        if (typeof window.gtag !== 'function') return;
+        window.gtag('event', eventName, {
+            send_to: analyticsId,
+            ...parameters
+        });
+    }
+
+    const pageMetadata = {
+        'tab-home': { title: 'RenderLogic: Film Post-Production & Offline AI Software', section: 'home' },
+        'tab-creative': { title: 'Film Editing, Color Grading & AI Filmmaking | RenderLogic', section: 'film-making' },
+        'tab-software': { title: 'Offline AI Software Lab & Lipi | RenderLogic', section: 'software-lab' },
+        'tab-collaborators': { title: 'Achu Vijayan & RenderLogic Team', section: 'about' },
+        'tab-documentation': { title: 'Product Documentation | RenderLogic', section: 'documentation' },
+        'tab-support': { title: 'Software Support | RenderLogic', section: 'support' },
+        'tab-blogs': { title: 'Film & Offline AI Articles | RenderLogic', section: 'blog' },
+        'tab-affiliate': { title: 'Affiliate Program | RenderLogic', section: 'affiliate' },
+        'tab-mediakit': { title: 'Media Kit | RenderLogic', section: 'media-kit' },
+        'tab-contact': { title: 'Contact RenderLogic', section: 'contact' }
+    };
     
     // ==========================================
     // 1. Tab Navigation Routing System
@@ -24,8 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const isTarget = trigger.getAttribute('data-tab-target') === targetTabId;
             if (isTarget) {
                 trigger.classList.add('active');
+                if (trigger.classList.contains('nav-link')) trigger.setAttribute('aria-current', 'page');
             } else {
                 trigger.classList.remove('active');
+                trigger.removeAttribute('aria-current');
             }
         });
 
@@ -46,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Close mobile dropdown drawer on select
         if (resourcesDropdown) {
             resourcesDropdown.classList.remove('mobile-open');
+            resourcesTrigger?.setAttribute('aria-expanded', 'false');
         }
 
         // Toggle active tab content panels
@@ -56,6 +81,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 content.classList.remove('active');
             }
         });
+
+        const metadata = pageMetadata[targetTabId];
+        if (metadata) {
+            document.title = metadata.title;
+            trackEvent('view_section', {
+                section_name: metadata.section,
+                page_location: `${window.location.origin}/#${metadata.section}`,
+                page_title: metadata.title
+            });
+        }
 
         // Close mobile nav drawer if active
         const nav = document.getElementById('navigation-bar');
@@ -75,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Push hash state silently (optional)
             const cleanHash = targetTabId.replace('tab-', '');
-            history.pushState(null, null, `#${cleanHash}`);
+            history.pushState({ tab: targetTabId }, '', `#${cleanHash}`);
         });
     });
 
@@ -89,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetTabId = card.getAttribute('data-tab-link');
             switchTab(targetTabId);
             const cleanHash = targetTabId.replace('tab-', '');
-            history.pushState(null, null, `#${cleanHash}`);
+            history.pushState({ tab: targetTabId }, '', `#${cleanHash}`);
         });
     });
 
@@ -103,6 +138,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
                 e.stopPropagation();
                 resourcesDropdown.classList.toggle('mobile-open');
+                resourcesTrigger.setAttribute('aria-expanded', resourcesDropdown.classList.contains('mobile-open') ? 'true' : 'false');
+            }
+        });
+        resourcesTrigger.addEventListener('focus', () => resourcesTrigger.setAttribute('aria-expanded', 'true'));
+        resourcesDropdown.addEventListener('focusout', (event) => {
+            if (!resourcesDropdown.contains(event.relatedTarget)) {
+                resourcesTrigger.setAttribute('aria-expanded', 'false');
             }
         });
     }
@@ -116,6 +158,12 @@ document.addEventListener('DOMContentLoaded', () => {
             switchTab(potentialTabId);
         }
     }
+
+    window.addEventListener('popstate', () => {
+        const hash = window.location.hash.replace('#', '') || 'home';
+        const targetTabId = `tab-${hash}`;
+        switchTab(document.getElementById(targetTabId) ? targetTabId : 'tab-home');
+    });
 
 
     // ==========================================
@@ -163,6 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navigator.clipboard.writeText(emailText)
                 .then(() => {
                     copyStatus.classList.add('show');
+                    trackEvent('contact_copy', { contact_method: 'email' });
                     setTimeout(() => {
                         copyStatus.classList.remove('show');
                     }, 2000);
@@ -172,6 +221,41 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
         });
     }
+
+    const colorCopyButton = document.getElementById('btn-copy-brand-colors');
+    colorCopyButton?.addEventListener('click', async () => {
+        try {
+            await navigator.clipboard.writeText(colorCopyButton.dataset.copyText || '');
+            const originalLabel = colorCopyButton.textContent;
+            colorCopyButton.textContent = 'Copied';
+            trackEvent('media_kit_action', { action: 'copy_brand_colors' });
+            window.setTimeout(() => { colorCopyButton.textContent = originalLabel; }, 1800);
+        } catch (error) {
+            console.error('Unable to copy brand colors.', error);
+        }
+    });
+
+    const contactForm = document.getElementById('main-contact-form');
+    const contactFormStatus = document.getElementById('contact-form-status');
+    contactForm?.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (!contactForm.reportValidity()) return;
+
+        const formData = new FormData(contactForm);
+        const interest = String(formData.get('interest') || 'project');
+        const subject = `RenderLogic ${interest} inquiry from ${formData.get('name') || 'website visitor'}`;
+        const body = [
+            `Name: ${formData.get('name') || ''}`,
+            `Email: ${formData.get('email') || ''}`,
+            `Inquiry type: ${interest}`,
+            '',
+            String(formData.get('message') || '')
+        ].join('\n');
+
+        trackEvent('generate_lead', { inquiry_type: interest, contact_method: 'email' });
+        if (contactFormStatus) contactFormStatus.textContent = 'Opening your email app with this inquiry…';
+        window.location.href = `mailto:contact@renderlogic.in?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
 
 
     // ==========================================
@@ -260,191 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // ==========================================
-    // 5. Parayu Screenshot 3D Spatial Deck (Software Lab Tab)
-    // ==========================================
-    const slideDeckItems = document.querySelectorAll('.slide-deck-item');
-    const screenshotLabel = document.getElementById('screenshot-tab-label');
-    const sliderDots = document.querySelectorAll('.slider-dot');
-    const deckRoot = document.querySelector('.cinematic-deck');
-    const deckFrame = deckRoot?.querySelector('.mockup-frame');
-    const deckProgress = deckRoot?.querySelector('.deck-progress');
-    const prevDeckButton = deckRoot?.querySelector('.deck-arrow-prev');
-    const nextDeckButton = deckRoot?.querySelector('.deck-arrow-next');
-    let currentScreenshotIndex = 0;
-    let autoplayInterval = null;
-    let dragStartX = null;
-    let lastDirection = 1;
-    
-    const screenshotLabels = [
-        "Home Dashboard",
-        "Parayu History Logs",
-        "Custom Personal Dictionary",
-        "Snippets & Templates",
-        "System Settings & Brain Switch",
-        "Your Voice Insights"
-    ];
-    
-    function animateDeckProgress() {
-        if (!deckProgress) return;
-        deckProgress.classList.remove('is-running');
-        deckProgress.offsetWidth;
-        deckProgress.classList.add('is-running');
-    }
 
-    function updateDeckUI() {
-        const totalSlides = slideDeckItems.length;
-        slideDeckItems.forEach((slide, i) => {
-            slide.style.transform = '';
-            slide.style.opacity = '';
-            slide.style.filter = '';
-            slide.style.zIndex = '';
-            slide.style.pointerEvents = '';
-            slide.classList.toggle('active', i === currentScreenshotIndex);
-            if (sliderDots[i]) {
-                const isSelected = i === currentScreenshotIndex;
-                sliderDots[i].style.opacity = isSelected ? '1' : '0.4';
-                sliderDots[i].classList.toggle('active', isSelected);
-                sliderDots[i].setAttribute('aria-current', isSelected ? 'true' : 'false');
-            }
-        });
-        
-        if (screenshotLabel) {
-            const count = screenshotLabel.querySelector('.deck-label-count');
-            const text = screenshotLabel.querySelector('.deck-label-text');
-            if (count) count.textContent = `${String(currentScreenshotIndex + 1).padStart(2, '0')} / ${String(totalSlides).padStart(2, '0')}`;
-            if (text) text.textContent = screenshotLabels[currentScreenshotIndex];
-            screenshotLabel.animate(
-                [
-                    { opacity: 0, transform: `translateY(${lastDirection * 8}px)` },
-                    { opacity: 1, transform: 'translateY(0)' }
-                ],
-                { duration: 420, easing: 'cubic-bezier(.16,1,.3,1)' }
-            );
-        }
-        animateDeckProgress();
-    }
-
-    function goToScreenshot(index, userInitiated = false) {
-        const total = slideDeckItems.length;
-        const next = (index + total) % total;
-        if (next === currentScreenshotIndex) return;
-        const previous = currentScreenshotIndex;
-        const rawDiff = next - currentScreenshotIndex;
-        lastDirection = Math.abs(rawDiff) > total / 2 ? -Math.sign(rawDiff) : Math.sign(rawDiff);
-        const outgoing = slideDeckItems[previous];
-        const incoming = slideDeckItems[next];
-        slideDeckItems.forEach((slide) => slide.getAnimations().forEach((animation) => animation.cancel()));
-        currentScreenshotIndex = next;
-        updateDeckUI();
-
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            if (userInitiated) resetAutoplay();
-            return;
-        }
-
-        // Contemporary editorial transition: split the outgoing interface into
-        // staggered slices while the next product view resolves underneath.
-        if (deckFrame) {
-            const transitionLayer = document.createElement('div');
-            transitionLayer.className = 'deck-transition-layer';
-            const sourceImage = outgoing.querySelector('img');
-            const shardCount = window.innerWidth < 640 ? 4 : 7;
-
-            if (sourceImage) {
-                for (let shardIndex = 0; shardIndex < shardCount; shardIndex += 1) {
-                    const shard = document.createElement('div');
-                    const shardImage = sourceImage.cloneNode(true);
-                    const left = (shardIndex / shardCount) * 100;
-                    const right = 100 - ((shardIndex + 1) / shardCount) * 100;
-                    shard.className = 'deck-shard';
-                    shard.style.clipPath = `inset(0 ${right}% 0 ${left}%)`;
-                    shard.appendChild(shardImage);
-                    transitionLayer.appendChild(shard);
-
-                    const verticalDrift = (shardIndex % 2 === 0 ? -1 : 1) * (10 + shardIndex * 1.5);
-                    shard.animate([
-                        { transform: 'translate3d(0,0,0) scale(1)', opacity: 1 },
-                        { transform: `translate3d(${-lastDirection * (2.5 + shardIndex * .35)}%, ${verticalDrift}%, 0) scale(.985)`, opacity: 0 }
-                    ], {
-                        duration: 580 + shardIndex * 38,
-                        delay: shardIndex * 24,
-                        easing: 'cubic-bezier(.65,0,.35,1)',
-                        fill: 'forwards'
-                    });
-                }
-            }
-
-            const scan = document.createElement('span');
-            scan.className = 'deck-scan';
-            transitionLayer.appendChild(scan);
-            deckFrame.appendChild(transitionLayer);
-            window.setTimeout(() => transitionLayer.remove(), 980);
-        }
-
-        incoming.animate([
-            { transform: `translate3d(${lastDirection * 2.2}%, 0, 0) scale(1.045)`, filter: 'blur(7px) saturate(.8)', opacity: .35 },
-            { transform: 'translate3d(0,0,0) scale(1)', filter: 'blur(0) saturate(1)', opacity: 1 }
-        ], { duration: 820, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'forwards' });
-
-        if (userInitiated) resetAutoplay();
-    }
-
-    function resetAutoplay() {
-        if (autoplayInterval) clearInterval(autoplayInterval);
-        animateDeckProgress();
-        autoplayInterval = setInterval(() => {
-            goToScreenshot(currentScreenshotIndex + 1);
-        }, 6400);
-    }
-
-    slideDeckItems.forEach((slide, i) => {
-        slide.addEventListener('click', () => goToScreenshot(i, true));
-    });
-
-    sliderDots.forEach((dot, i) => {
-        dot.style.cursor = 'pointer';
-        dot.setAttribute('role', 'button');
-        dot.setAttribute('aria-label', `Show ${screenshotLabels[i]}`);
-        dot.tabIndex = 0;
-        dot.addEventListener('click', () => goToScreenshot(i, true));
-        dot.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                goToScreenshot(i, true);
-            }
-        });
-    });
-
-    prevDeckButton?.addEventListener('click', () => goToScreenshot(currentScreenshotIndex - 1, true));
-    nextDeckButton?.addEventListener('click', () => goToScreenshot(currentScreenshotIndex + 1, true));
-
-    if (deckFrame) {
-        deckFrame.addEventListener('pointerdown', (event) => { dragStartX = event.clientX; });
-        deckFrame.addEventListener('pointerup', (event) => {
-            if (dragStartX === null) return;
-            const distance = event.clientX - dragStartX;
-            dragStartX = null;
-            if (Math.abs(distance) > 42) goToScreenshot(currentScreenshotIndex + (distance < 0 ? 1 : -1), true);
-        });
-    }
-
-    deckRoot?.addEventListener('mouseenter', () => {
-        if (autoplayInterval) clearInterval(autoplayInterval);
-        deckProgress?.classList.remove('is-running');
-    });
-    deckRoot?.addEventListener('mouseleave', resetAutoplay);
-
-    document.addEventListener('keydown', (event) => {
-        if (!deckRoot?.matches(':hover')) return;
-        if (event.key === 'ArrowLeft') goToScreenshot(currentScreenshotIndex - 1, true);
-        if (event.key === 'ArrowRight') goToScreenshot(currentScreenshotIndex + 1, true);
-    });
-
-    if (slideDeckItems.length > 0) {
-        updateDeckUI();
-        resetAutoplay();
-    }
 
 
 
@@ -462,5 +362,23 @@ document.addEventListener('DOMContentLoaded', () => {
             card.style.setProperty('--x', `${x}px`);
             card.style.setProperty('--y', `${y}px`);
         });
+    });
+
+    document.addEventListener('click', (event) => {
+        const link = event.target.closest('a[href]');
+        if (!link) return;
+        const href = link.getAttribute('href') || '';
+
+        if (href.startsWith('mailto:')) {
+            trackEvent('contact_click', { contact_method: 'email' });
+        } else if (href.startsWith('tel:')) {
+            trackEvent('contact_click', { contact_method: 'phone' });
+        } else if (link.origin && link.origin !== window.location.origin) {
+            trackEvent('outbound_click', {
+                link_url: link.href,
+                link_domain: link.hostname,
+                link_text: (link.textContent || '').trim().slice(0, 100)
+            });
+        }
     });
 });

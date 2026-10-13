@@ -389,6 +389,10 @@ html.dark .logo-mark-night { display: block; }
 }
 
 .nav-link {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    font: inherit;
     font-size: 0.95rem;
     color: var(--text-muted);
     font-weight: 500;
@@ -397,7 +401,7 @@ html.dark .logo-mark-night { display: block; }
     cursor: pointer;
 }
 
-.nav-link:hover, .nav-link.active {
+.nav-link:hover, .nav-link:focus-visible, .nav-link.active {
     color: var(--text-main);
 }
 
@@ -412,7 +416,7 @@ html.dark .logo-mark-night { display: block; }
     transition: var(--transition-smooth);
 }
 
-.nav-link.active::after, .nav-link:hover::after {
+.nav-link.active::after, .nav-link:hover::after, .nav-link:focus-visible::after {
     width: 100%;
 }
 
@@ -431,6 +435,7 @@ html.dark .logo-mark-night { display: block; }
 }
 
 .nav-dropdown:hover .arrow-icon,
+.nav-dropdown:focus-within .arrow-icon,
 .nav-dropdown.active .arrow-icon {
     transform: rotate(180deg);
 }
@@ -455,6 +460,7 @@ html.dark .logo-mark-night { display: block; }
 }
 
 .nav-dropdown:hover .dropdown-menu,
+.nav-dropdown:focus-within .dropdown-menu,
 .nav-dropdown.active .dropdown-menu {
     visibility: visible;
     opacity: 1;
@@ -908,6 +914,14 @@ html.dark .logo-mark-night { display: block; }
     letter-spacing: 0.08em;
 }
 
+.portfolio-badges-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+
 .portfolio-desc {
     color: var(--text-muted);
     font-size: 0.95rem;
@@ -957,231 +971,243 @@ html.dark .logo-mark-night { display: block; }
    TAB 2: SOFTWARE LAB (Products)
    ========================================== */
 .software-hero {
-    max-width: 800px;
+    max-width: 860px;
     margin: 0 auto;
 }
 
-.parayu-showcase-grid {
-    display: grid;
-    grid-template-columns: 0.9fr 1.15fr;
-    gap: 60px;
-    align-items: center;
-    margin-top: 70px;
-    margin-bottom: 100px;
-}
-
-.parayu-visual-mockup {
-    width: 100%;
-}
-
-/* Premium product showcase — restrained motion, editorial controls */
-.cinematic-deck {
-    --deck-x: 50%;
-    --deck-y: 45%;
-    position: relative;
-    isolation: isolate;
-    perspective: 1400px !important;
-}
-
-.deck-aurora {
-    position: absolute;
-    inset: 18% -10% -4%;
-    z-index: -1;
-    pointer-events: none;
-    opacity: .2;
-    filter: blur(64px);
-    background:
-        radial-gradient(circle at 50% 45%, rgba(224, 30, 65, .18), transparent 40%),
-        radial-gradient(circle at 72% 38%, rgba(160, 43, 176, .14), transparent 42%);
-    transition: background-position .6s ease;
-}
-
-.deck-view-label {
-    position: absolute !important;
-    top: -19px;
-    left: 18px;
-    z-index: 30;
-    display: inline-flex !important;
-    align-items: center;
+.software-pill-metrics {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 12px;
-    margin: 0 !important;
-    padding: 8px 10px 8px 12px !important;
-    overflow: hidden;
-    background: color-mix(in srgb, var(--bg-card) 88%, transparent) !important;
-    backdrop-filter: blur(20px) saturate(1.25);
-    box-shadow: 0 8px 28px rgba(28, 27, 25, .1) !important;
+    margin-top: 24px;
 }
 
-.deck-label-count {
-    color: var(--primary);
-    font-family: var(--font-mono);
-    font-size: 9px;
-    letter-spacing: .08em;
-}
-
-.deck-label-text {
-    min-width: 0;
-    padding: 0 4px 0 0;
-    text-align: left;
-    background: transparent;
-}
-
-.cinematic-deck .mockup-frame {
-    overflow: hidden !important;
-    touch-action: pan-y;
-    border: 1px solid color-mix(in srgb, var(--border-color) 82%, transparent) !important;
-    border-radius: 16px !important;
-    background: var(--bg-card) !important;
-    box-shadow: 0 28px 70px rgba(28, 27, 25, .16), 0 3px 12px rgba(28, 27, 25, .08) !important;
-}
-
-.cinematic-deck .slide-deck-item {
-    transform-origin: center center;
-    backface-visibility: hidden;
-    border: 0 !important;
-    border-radius: 15px !important;
-    box-shadow: none !important;
-    opacity: 0;
-    pointer-events: none;
-    transform: none;
-    will-change: transform, opacity;
-}
-
-.cinematic-deck .slide-deck-item.active {
-    z-index: 2;
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.cinematic-deck .glossy-sheen { display: none; }
-
-.deck-transition-layer,
-.deck-shard,
-.deck-shard img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.deck-transition-layer {
-    z-index: 12;
-    overflow: hidden;
-    pointer-events: none;
-}
-
-.deck-shard {
-    will-change: transform, opacity;
-}
-
-.deck-shard img {
-    display: block;
-    object-fit: cover;
-}
-
-.deck-scan {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: -18%;
-    width: 14%;
-    opacity: 0;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,.86) 46%, rgba(224,30,65,.72) 52%, transparent);
-    filter: blur(1px);
-    transform: skewX(-10deg);
-    animation: deck-scan 720ms cubic-bezier(.16,1,.3,1) 80ms both;
-}
-
-@keyframes deck-scan {
-    0% { left: -18%; opacity: 0; }
-    15% { opacity: .72; }
-    72% { opacity: .38; }
-    100% { left: 110%; opacity: 0; }
-}
-
-.deck-arrow {
-    position: absolute;
-    top: 50%;
-    z-index: 40;
-    width: 40px;
-    height: 40px;
-    border: 1px solid rgba(255,255,255,.28);
-    border-radius: 12px;
-    color: #fff;
-    background: rgba(16, 14, 18, .58);
-    backdrop-filter: blur(18px) saturate(1.3);
-    box-shadow: 0 8px 24px rgba(0,0,0,.16);
-    cursor: pointer;
-    opacity: 0;
-    transform: translateY(-50%);
-    transition: opacity .2s ease, background .2s ease, border-color .2s ease;
-}
-
-.deck-arrow-prev { left: 14px; }
-.deck-arrow-next { right: 14px; }
-.cinematic-deck:hover .deck-arrow,
-.deck-arrow:focus-visible { opacity: 1; }
-.deck-arrow:hover { background: rgba(224, 30, 65, .92); border-color: rgba(255,255,255,.5); }
-
-.deck-pagination {
-    left: 50% !important;
-    right: auto !important;
-    bottom: 12px !important;
+.software-pill {
+    display: inline-flex;
     align-items: center;
-    padding: 6px 8px;
-    border: 1px solid rgba(255,255,255,.18);
+    gap: 8px;
+    padding: 7px 16px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    font-family: var(--font-mono), monospace;
+    color: var(--text-muted);
+    background: var(--surface-1);
+    border: 1px solid var(--border-color);
     border-radius: 999px;
-    background: rgba(12, 10, 15, .48);
-    backdrop-filter: blur(18px) saturate(1.2);
-    transform: translateX(-50%);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
 }
 
-.deck-pagination .slider-dot {
-    width: 6px !important;
-    height: 6px !important;
-    transform: none !important;
-    transition: width .4s cubic-bezier(.2,.8,.2,1), opacity .3s ease, background .3s ease !important;
+.software-pill span {
+    font-size: 1rem;
 }
 
-.deck-pagination .slider-dot.active {
-    width: 18px !important;
-    border-radius: 999px !important;
-    background: var(--primary) !important;
-}
-
-.deck-progress {
-    position: absolute;
-    right: 0;
-    bottom: -10px;
-    left: 0;
-    z-index: 22;
-    height: 2px;
+/* Flagship Lipi Feature Card */
+.lipi-flagship-card {
+    margin-top: 55px;
+    margin-bottom: 70px;
+    padding: 44px;
+    border-radius: 24px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
+    position: relative;
     overflow: hidden;
-    border-radius: 99px;
-    background: color-mix(in srgb, var(--border-color) 55%, transparent);
 }
 
-.deck-progress span {
-    display: block;
+.lipi-card-header {
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: 40px;
+    align-items: center;
+    margin-bottom: 36px;
+}
+
+.lipi-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 6px;
+    background: rgba(224, 30, 65, 0.08);
+    color: var(--primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    font-family: var(--font-mono), monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 12px;
+}
+
+.lipi-title {
+    font-size: 2.1rem;
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1.2;
+    margin-bottom: 8px;
+}
+
+.lipi-tagline {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 12px;
+}
+
+.lipi-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+}
+
+.lipi-cta-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding-left: 20px;
+    border-left: 1px solid var(--border-color);
+}
+
+.lipi-site-link {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    transition: color 0.2s ease;
+    text-decoration: underline;
+}
+
+.lipi-site-link:hover {
+    color: var(--primary);
+}
+
+/* Primary macOS Window Showcase (Single Live App Screenshot) */
+.lipi-window-showcase {
     width: 100%;
-    height: 100%;
-    transform: scaleX(0);
-    transform-origin: left;
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    margin-top: 28px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.03);
+    background: #ffffff;
 }
 
-.deck-progress.is-running span { animation: deck-progress 6.4s linear forwards; }
-@keyframes deck-progress { to { transform: scaleX(1); } }
-
-@media (max-width: 768px) {
-    .deck-arrow { display: none; }
-    .deck-view-label { top: -16px; left: 10px; }
+html.dark .lipi-window-showcase {
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .cinematic-deck .slide-deck-item { transition-duration: .01ms !important; }
-    .deck-transition-layer { display: none; }
-    .deck-progress { display: none; }
+.lipi-live-screenshot {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* 6-Card Feature Pillars Grid */
+.software-features-section {
+    margin-top: 80px;
+}
+
+.software-feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.feature-card {
+    padding: 28px;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(224, 30, 65, 0.3);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+}
+
+.feature-icon-badge {
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+    display: inline-block;
+}
+
+.feature-card h4 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+
+/* Comparison Table */
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 16px 20px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.comparison-table th {
+    font-size: 0.8rem;
+    font-family: var(--font-mono), monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    background: var(--surface-1);
+}
+
+.comparison-table .highlight-column {
+    background: rgba(224, 30, 65, 0.03);
+    border-left: 1px solid rgba(224, 30, 65, 0.15);
+    border-right: 1px solid rgba(224, 30, 65, 0.15);
+    font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .lipi-card-header {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    .lipi-cta-actions {
+        padding-left: 0;
+        border-left: none;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .software-feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    }
+}
+
+@media (max-width: 640px) {
+    .software-feature-grid {
+        grid-template-columns: 1fr;
+    }
+    .lipi-flagship-card {
+        padding: 24px;
+    }
+    .lipi-title {
+        font-size: 1.6rem;
+    }
+    .lipi-window-showcase {
+        margin-top: 16px;
+        border-radius: 12px;
+    }
 }
 
 .mockup-frame {
@@ -1346,6 +1372,9 @@ html.dark .logo-mark-night { display: block; }
 
 .roadmap-card {
     padding: 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .roadmap-tag {
@@ -1882,10 +1911,11 @@ html.dark .logo-mark-night { display: block; }
         right: -100%;
         width: 280px;
         height: 100vh;
-        background: var(--header-bg);
+        background: var(--bg-card);
         backdrop-filter: blur(25px);
         -webkit-backdrop-filter: blur(25px);
         border-left: 1px solid var(--border-color);
+        box-shadow: -18px 0 45px rgba(0, 0, 0, 0.12);
         flex-direction: column;
         justify-content: center;
         gap: 30px;
@@ -2360,6 +2390,42 @@ html.dark .logo-mark-night { display: block; }
     border: 1px solid rgba(249, 115, 22, 0.2);
 }
 
+.role-badge.vfx {
+    background: rgba(14, 165, 233, 0.08);
+    color: #0284c7;
+    border: 1px solid rgba(14, 165, 233, 0.25);
+}
+
+html.dark .role-badge.editor {
+    color: #a78bfa;
+    background: rgba(167, 139, 250, 0.12);
+    border-color: rgba(167, 139, 250, 0.3);
+}
+
+html.dark .role-badge.vfx {
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.12);
+    border-color: rgba(56, 189, 248, 0.3);
+}
+
+html.dark .role-badge.producer {
+    color: #2dd4bf;
+    background: rgba(45, 212, 191, 0.12);
+    border-color: rgba(45, 212, 191, 0.3);
+}
+
+html.dark .role-badge.director {
+    color: #fb7185;
+    background: rgba(251, 113, 133, 0.12);
+    border-color: rgba(251, 113, 133, 0.3);
+}
+
+html.dark .role-badge.spoteditor {
+    color: #fb923c;
+    background: rgba(251, 146, 60, 0.12);
+    border-color: rgba(251, 146, 60, 0.3);
+}
+
 /* ==========================================================================
    Filmography → stacked cards on phones.
    The 5-column table overflows horizontally on narrow screens, so each row
@@ -2443,4 +2509,49 @@ html.dark .logo-mark-night { display: block; }
         line-height: 1.55;
         color: var(--text-muted);
     }
+}
+/* Keyboard and contact affordances shared by the crawlable landing pages. */
+.skip-link {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 10000;
+    transform: translateY(-160%);
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: var(--text-main);
+    color: var(--bg-color);
+    font-weight: 700;
+    transition: transform 0.2s ease;
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
+
+.direct-contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 20px;
+    margin-top: 22px;
+}
+
+.direct-contact-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+}
+
+.direct-contact-links a:hover,
+.direct-contact-links a:focus-visible {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.form-status {
+    min-height: 1.5em;
+    margin-top: 12px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
 }

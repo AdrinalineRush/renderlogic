@@ -1,22 +1,31 @@
 # RenderLogic
 
-> RenderLogic is a creative studio and software lab combining cinematic
-> post-production with AI software development. Based in Kerala, India.
+> RenderLogic is a Kerala creative studio and software lab led by Achu Vijayan. It combines film post-production with private, offline-first AI software.
 
-## About
-RenderLogic operates two sides under one brand:
-- **Creative Studio** — film & video editing, color grading, and directing.
-  Credits include the films *Vichithram* and *Aattam*. Founder: Achu Vijayan.
-- **Software Lab** — offline-first AI applications for creators.
+## Primary pages
+- Home: https://www.renderlogic.in/
+- Film editing, color grading, and AI filmmaking: https://www.renderlogic.in/film-making/
+- Offline AI Software Lab: https://www.renderlogic.in/software-lab/
+- Lipi offline voice intelligence: https://www.heylipi.com/
+- Achu Vijayan and RenderLogic: https://www.renderlogic.in/about/
+- Contact: https://www.renderlogic.in/contact/
+- Articles: https://www.renderlogic.in/blog/
 
-## Products
-- **Parayu** — an offline AI voice-to-text / dictation app for desktop (macOS,
-  Windows) and mobile (iOS, Android).
-- **RenderLogic Director (RenderMagic)** — an AI video-generation application.
+## Film work
+RenderLogic provides theatrical film editing, DaVinci Resolve color grading, directing, VFX, and AI-assisted filmmaking workflows. Portfolio credits represented on the site include House For Sale (2027), Boom Bang (2026), Aaram (2026), Vichithram, Charles Enterprises, Aattam, Mukundan Unni Associates, Oru Adaar Love, Thuninthavan / Orumbettavan, Simba, White, and Second Show.
 
-## Key pages
-- Home: https://renderlogic.in/
-- Sitemap: https://renderlogic.in/sitemap.xml
+## Software
+RenderLogic builds local-first applications and creator utilities. Lipi (formerly Parayu) is private offline AI voice intelligence with system-wide voice typing, cross-language speech translation across 99+ spoken languages, on-device chat, and file transcription. Product downloads and details are available at https://www.heylipi.com/.
 
-## Contact
-- Website: https://renderlogic.in/
+## Articles
+- Ensemble film editing: https://www.renderlogic.in/blog/pacing-and-rhythm-ensemble-film-editing/
+- Local AI dictation and privacy: https://www.renderlogic.in/blog/local-ai-dictation-privacy/
+- Color grading psychological thrillers: https://www.renderlogic.in/blog/color-grading-psychological-thrillers/
+
+## Organization
+- Legal name: RenderLogic Media & Technologies Private Limited
+- Founder: Achu Vijayan
+- Location: Ernakulam, Kerala, India
+- Email: contact@renderlogic.in
+- Website: https://www.renderlogic.in/
+- Sitemap: https://www.renderlogic.in/sitemap.xml

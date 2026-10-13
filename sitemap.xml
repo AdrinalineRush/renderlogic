@@ -1,29 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  RenderLogic — XML Sitemap
-  Lists every real, crawlable URL on https://renderlogic.in/.
-  The site is currently a single-page app, so there is one canonical URL.
-  Includes the Google Image-sitemap extension so brand imagery can surface in
-  Google Images. When real sub-pages are added (software, render-magic, parayu,
-  contact, blog…), add a <url> block for each here.
--->
-<urlset
-    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-    xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-                        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://renderlogic.in/</loc>
-    <lastmod>2026-06-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <loc>https://www.renderlogic.in/</loc>
+    <lastmod>2026-08-13</lastmod>
     <image:image>
-      <image:loc>https://renderlogic.in/assets/logo.png</image:loc>
-      <image:title>RenderLogic — Creative Studio &amp; Software Lab</image:title>
-      <image:caption>RenderLogic: cinematic post-production and offline AI software.</image:caption>
+      <image:loc>https://www.renderlogic.in/assets/og-banner.png</image:loc>
+      <image:title>RenderLogic film post-production and offline AI software</image:title>
     </image:image>
   </url>
-
+  <url>
+    <loc>https://www.renderlogic.in/film-making/</loc>
+    <lastmod>2026-08-13</lastmod>
+    <image:image>
+      <image:loc>https://www.renderlogic.in/assets/vichithram.jpg</image:loc>
+      <image:title>Vichithram film poster — directed and edited by Achu Vijayan</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.renderlogic.in/software-lab/</loc>
+    <lastmod>2026-08-13</lastmod>
+    <image:image>
+      <image:loc>https://www.renderlogic.in/assets/home.png</image:loc>
+      <image:title>Lipi offline AI voice intelligence dashboard</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.renderlogic.in/parayu/</loc>
+    <lastmod>2026-10-14</lastmod>
+    <image:image>
+      <image:loc>https://www.renderlogic.in/assets/home.png</image:loc>
+      <image:title>Lipi offline AI voice intelligence dashboard</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.renderlogic.in/about/</loc>
+    <lastmod>2026-08-13</lastmod>
+  </url>
+  <url>
+    <loc>https://www.renderlogic.in/contact/</loc>
+    <lastmod>2026-08-13</lastmod>
+  </url>
+  <url>
+    <loc>https://www.renderlogic.in/blog/</loc>
+    <lastmod>2026-08-13</lastmod>
+  </url>
+  <url>
+    <loc>https://www.renderlogic.in/blog/pacing-and-rhythm-ensemble-film-editing/</loc>
+    <lastmod>2026-08-13</lastmod>
+    <image:image>
+      <image:loc>https://www.renderlogic.in/assets/aattam.jpg</image:loc>
+      <image:title>Aattam Malayalam ensemble drama film poster</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.renderlogic.in/blog/local-ai-dictation-privacy/</loc>
+    <lastmod>2026-08-13</lastmod>
+    <image:image>
+      <image:loc>https://www.renderlogic.in/assets/home.png</image:loc>
+      <image:title>Parayu local AI dictation dashboard</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.renderlogic.in/blog/color-grading-psychological-thrillers/</loc>
+    <lastmod>2026-08-13</lastmod>
+    <image:image>
+      <image:loc>https://www.renderlogic.in/assets/vichithram.jpg</image:loc>
+      <image:title>Vichithram Malayalam mystery thriller film poster</image:title>
+    </image:image>
+  </url>
 </urlset>
